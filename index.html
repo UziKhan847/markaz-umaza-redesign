@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Markaz Umaza: Qur'an &amp; Arabic Institute</title>
+<meta name="description" content="Markaz Umaza: live online classes in Qur'an recitation, Tajwid, Hifdh, Arabic and Islamic studies for children and adults.">
+<meta name="theme-color" content="#0c2a2f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Manrope:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0c2a2f; --ink-2:#0f3a41; --teal:#174f58; --teal-2:#1f6570;
+  --gold:#8a8a32; --gold-d:#5f5f1d; --gold-l:#d4bf6a;
+  --cream:#f6f1e6; --paper:#fbf8f1; --line:rgba(23,79,88,.14);
+  --text:#1d3438; --muted:#4c6266;
+  --serif:"Marcellus", "Times New Roman", serif;
+  --sans:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ar:"Amiri", "Traditional Arabic", serif;
+  --radius:18px;
+  --wrap:1200px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--text);background:var(--paper);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.12;margin:0;color:var(--teal);letter-spacing:.005em}
+p{margin:0}
+.ar{font-family:var(--ar);direction:rtl}
+.wrap{width:min(var(--wrap), 100% - 48px);margin-inline:auto}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-d)}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+.section{padding:120px 0}
+.section-head{max-width:680px;margin-bottom:56px}
+.section-head h2{font-size:clamp(34px,4.4vw,54px);margin:18px 0 18px}
+.section-head p{color:var(--muted);font-size:18px}
+.center{text-align:center;margin-inline:auto}
+.center .eyebrow::after{content:"";width:28px;height:1px;background:currentColor}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;font-family:var(--sans);font-weight:700;font-size:15px;letter-spacing:.02em;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:18px;height:18px}
+.btn-gold{background:var(--gold-l);color:var(--ink);box-shadow:0 10px 30px -12px rgba(212,191,106,.7)}
+.btn-gold:hover{background:#e2cf7f}
+.btn-ghost{border-color:rgba(246,241,230,.55);color:var(--cream)}
+.btn-ghost:hover{background:rgba(246,241,230,.1);border-color:var(--cream)}
+.btn-teal{background:var(--teal);color:var(--cream)}
+.btn-teal:hover{background:var(--ink-2)}
+.btn-line{border-color:var(--teal);color:var(--teal)}
+.btn-line:hover{background:var(--teal);color:var(--cream)}
+:focus-visible{outline:2px solid var(--gold-l);outline-offset:3px}
+
+/* logo */
+.mu{--la:#174f58;--lb:#8a8a32}
+.mu.light{--la:#f6f1e6;--lb:#d4bf6a}
+
+/* ============ NAV ============ */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .35s ease, box-shadow .35s ease, padding .35s ease;padding:22px 0}
+.nav .wrap{display:flex;align-items:center;gap:32px}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--cream)}
+.brand svg{width:64px;height:auto;transition:width .35s ease}
+.brand-text{display:flex;flex-direction:column;line-height:1}
+.brand-text small{font-family:var(--serif);font-size:11px;letter-spacing:.42em;color:var(--gold-l);margin-bottom:5px}
+.brand-text span{font-family:var(--serif);font-size:24px;letter-spacing:.14em}
+.nav-links{display:flex;gap:30px;margin-left:auto;list-style:none;padding:0;margin-block:0}
+.nav-links a{text-decoration:none;color:rgba(246,241,230,.88);font-size:15px;font-weight:600;position:relative;padding:6px 0}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1.5px;background:var(--gold-l);transition:right .3s ease}
+.nav-links a:hover::after{right:0}
+.nav .btn{min-height:46px;padding:0 22px}
+.menu-btn{display:none;margin-left:auto;width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(246,241,230,.4);background:transparent;color:var(--cream);cursor:pointer;align-items:center;justify-content:center}
+.menu-btn svg{width:22px;height:22px}
+.nav.scrolled{background:rgba(251,248,241,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);padding:12px 0}
+.nav.scrolled .brand{color:var(--teal)}
+.nav.scrolled .brand svg{width:52px}
+.nav.scrolled .brand-text small{color:var(--gold-d)}
+.nav.scrolled .mu{--la:#174f58;--lb:#8a8a32}
+.nav.scrolled .nav-links a{color:var(--text)}
+.nav.scrolled .nav-links a::after{background:var(--gold)}
+.nav.scrolled .menu-btn{color:var(--teal);border-color:var(--line)}
+.mobile-panel{display:none}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:max(760px, 100vh);overflow:hidden;background:#0b2a30;isolation:isolate;display:flex;align-items:center}
+.layer{position:absolute;left:-60px;right:-60px;pointer-events:none;will-change:transform}
+.layer svg{width:100%;height:100%}
+.l-sky{top:-25%;bottom:0;background:
+  radial-gradient(60% 45% at 72% 92%, rgba(212,191,106,.55), rgba(212,191,106,0) 70%),
+  linear-gradient(180deg,#071d22 0%,#0d3138 34%,#174f58 62%,#3f7069 82%,#a99a5d 100%)}
+.l-stars{top:-10%;height:70%}
+.l-stars circle{fill:#f6f1e6}
+.twinkle{animation:twinkle 4s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.25}50%{opacity:1}}
+.l-moon{top:0;height:100%}
+.l-far,.l-mid,.l-near{bottom:0;height:100%}
+.l-front{bottom:-1px;left:0;right:0;height:180px;z-index:7}
+.hero-content::before{content:"";position:absolute;inset:8% -12% 18%;z-index:-1;background:radial-gradient(closest-side,rgba(7,29,34,.55),rgba(7,29,34,0));pointer-events:none}
+.hero-content{position:relative;z-index:5;width:min(900px, 100% - 48px);margin:0 auto;padding:120px 0 210px;text-align:center;color:var(--cream);will-change:transform,opacity}
+.hero-emblem{width:min(150px, 40vw);height:auto;margin:0 auto 10px;filter:drop-shadow(0 10px 30px rgba(0,0,0,.35))}
+.hero-verse{font-size:clamp(22px,2.6vw,30px);color:var(--gold-l);margin-bottom:16px}
+.hero h1{color:var(--cream);font-size:clamp(40px,6vw,76px);text-shadow:0 4px 40px rgba(0,0,0,.25)}
+.hero h1 em{font-style:normal;color:var(--gold-l)}
+.hero-sub{max-width:640px;margin:26px auto 38px;font-size:clamp(16px,1.6vw,19px);color:rgba(246,241,230,.86)}
+.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-trust{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:center;margin-top:34px;font-size:14px;color:rgba(246,241,230,.78);list-style:none;padding:0}
+.hero-trust li{display:flex;align-items:center;gap:9px}
+.hero-trust svg{width:16px;height:16px;color:var(--gold-l)}
+.scroll-cue{position:absolute;left:50%;bottom:92px;z-index:8;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);text-decoration:none;font-weight:700}
+.scroll-cue span{width:1.5px;height:38px;background:linear-gradient(var(--teal),transparent);animation:cue 2s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* ============ INTRO / PILLARS ============ */
+.intro{padding:70px 0 120px}
+.intro-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:80px;align-items:start}
+.intro h2{font-size:clamp(34px,4.2vw,52px);margin:18px 0 22px}
+.intro-lead{font-size:19px;color:var(--muted)}
+.intro-note{margin-top:34px;padding:22px 24px;border-radius:var(--radius);background:var(--cream);display:flex;gap:16px;align-items:flex-start}
+.intro-note svg{flex:none;width:30px;height:30px;color:var(--gold)}
+.intro-note p{font-size:16px}
+.pillars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.pillar{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;transition:transform .35s ease, box-shadow .35s ease}
+.pillar:hover{transform:translateY(-4px);box-shadow:0 24px 50px -30px rgba(12,42,47,.35)}
+.pillar:nth-child(2),.pillar:nth-child(4){transform:translateY(34px)}
+.pillar:nth-child(2):hover,.pillar:nth-child(4):hover{transform:translateY(30px)}
+.p-icon{width:54px;height:54px;border-radius:14px;background:var(--teal);color:var(--gold-l);display:grid;place-items:center;margin-bottom:22px}
+.p-icon svg{width:26px;height:26px}
+.pillar h3{font-size:23px;margin-bottom:10px}
+.pillar p{font-size:15.5px;color:var(--muted)}
+
+/* ============ COURSES ============ */
+.courses{background:var(--cream);position:relative}
+.courses::before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23174f58' stroke-opacity='.10' stroke-width='1'%3E%3Crect x='18' y='18' width='24' height='24'/%3E%3Crect x='18' y='18' width='24' height='24' transform='rotate%2845 30 30%29'/%3E%3Cpath d='M0 0l13 13M60 0L47 13M0 60l13-13M60 60L47 47'/%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/svg%3E");background-size:84px;opacity:.5;pointer-events:none}
+.courses .wrap{position:relative}
+.courses-top{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:44px}
+.courses-top .section-head{margin-bottom:0}
+.tabs{display:flex;gap:6px;padding:6px;background:#fff;border:1px solid var(--line);border-radius:999px;flex-wrap:wrap}
+.tab{min-height:44px;padding:0 20px;border-radius:999px;border:0;background:transparent;font:600 14.5px var(--sans);color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .25s, color .25s}
+.tab .count{font-size:12px;min-width:22px;height:22px;border-radius:11px;display:grid;place-items:center;background:var(--cream);color:var(--teal)}
+.tab[aria-selected="true"]{background:var(--teal);color:var(--cream)}
+.tab[aria-selected="true"] .count{background:var(--gold-l);color:var(--ink)}
+.course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:24px}
+.card{background:#fff;border-radius:22px;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line);transition:transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s, opacity .35s}
+.card:hover{transform:translateY(-6px);box-shadow:0 30px 60px -34px rgba(12,42,47,.45)}
+.card.hide{display:none}
+.card.pop{animation:pop .5s cubic-bezier(.2,.7,.2,1) both}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+.card-art{position:relative;height:170px;display:grid;place-items:center;color:var(--cream);background-color:var(--teal);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23d4bf6a' stroke-opacity='.22' stroke-width='1'%3E%3Crect x='18' y='18' width='24' height='24'/%3E%3Crect x='18' y='18' width='24' height='24' transform='rotate%2845 30 30%29'/%3E%3Cpath d='M0 0l13 13M60 0L47 13M0 60l13-13M60 60L47 47'/%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/svg%3E");background-size:72px;overflow:hidden}
+.card-art::after{content:"";position:absolute;inset:auto 0 0 0;height:60%;background:linear-gradient(transparent,rgba(0,0,0,.18))}
+.card-art .ar{position:relative;z-index:1;font-size:46px;line-height:1.2;transition:transform .5s ease;text-shadow:0 4px 18px rgba(0,0,0,.3)}
+.card:hover .card-art .ar{transform:scale(1.06)}
+.card[data-cat="specialized"] .card-art{background-color:var(--ink-2)}
+.card[data-cat="private"] .card-art{background-color:#55551b}
+.badge{position:absolute;z-index:2;top:16px;left:16px;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:rgba(246,241,230,.94);color:var(--teal)}
+.card[data-cat="specialized"] .badge{color:var(--ink-2)}
+.card[data-cat="private"] .badge{color:#4a4a15}
+.card-body{padding:26px 26px 24px;display:flex;flex-direction:column;flex:1}
+.card h3{font-size:25px;margin-bottom:10px}
+.card-body > p{font-size:15.5px;color:var(--muted);margin-bottom:20px}
+.meta{list-style:none;padding:16px 0 0;margin:auto 0 0;border-top:1px dashed var(--line);display:grid;gap:8px;font-size:14px}
+.meta li{display:flex;gap:10px;align-items:center}
+.meta svg{width:16px;height:16px;color:var(--gold);flex:none}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px}
+.price{font-size:14px;color:var(--muted)}
+.price b{font-family:var(--serif);font-weight:400;font-size:22px;color:var(--teal)}
+.card-link{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;background:var(--cream);color:var(--teal);font-weight:700;font-size:14px;text-decoration:none;transition:background .25s,color .25s}
+.card-link svg{width:16px;height:16px;transition:transform .25s}
+.card-link:hover{background:var(--teal);color:var(--cream)}
+.card-link:hover svg{transform:translateX(3px)}
+
+/* ============ PRIVATE ============ */
+.private{background:var(--ink);color:var(--cream);position:relative;overflow:hidden}
+.private::before{content:"";position:absolute;inset:-20%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23d4bf6a' stroke-opacity='.22' stroke-width='1'%3E%3Crect x='18' y='18' width='24' height='24'/%3E%3Crect x='18' y='18' width='24' height='24' transform='rotate%2845 30 30%29'/%3E%3Cpath d='M0 0l13 13M60 0L47 13M0 60l13-13M60 60L47 47'/%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/svg%3E");background-size:96px;opacity:.35}
+.private-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:80px;align-items:center}
+.private .eyebrow{color:var(--gold-l)}
+.private h2{color:var(--cream);font-size:clamp(36px,4.6vw,58px);margin:18px 0 22px}
+.private-lead{font-size:18.5px;color:rgba(246,241,230,.8);max-width:560px}
+.checks{list-style:none;padding:0;margin:34px 0 40px;display:grid;gap:16px}
+.checks li{display:flex;gap:14px;align-items:flex-start;font-size:16.5px}
+.checks .tick{flex:none;width:28px;height:28px;border-radius:50%;background:rgba(212,191,106,.16);color:var(--gold-l);display:grid;place-items:center;margin-top:1px}
+.checks .tick svg{width:15px;height:15px}
+.checks b{color:var(--cream);font-weight:700}
+.checks span{color:rgba(246,241,230,.75)}
+.arch-wrap{position:relative;max-width:440px;margin-left:auto;width:100%}
+.arch{position:relative;aspect-ratio:4/5.2;border-radius:220px 220px 22px 22px;overflow:hidden;background:var(--teal);box-shadow:0 40px 80px -40px rgba(0,0,0,.7)}
+.arch .art{position:absolute;inset:-12% 0;background:
+  radial-gradient(70% 50% at 50% 35%, rgba(212,191,106,.35), transparent 70%),
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23d4bf6a' stroke-opacity='.22' stroke-width='1'%3E%3Crect x='18' y='18' width='24' height='24'/%3E%3Crect x='18' y='18' width='24' height='24' transform='rotate%2845 30 30%29'/%3E%3Cpath d='M0 0l13 13M60 0L47 13M0 60l13-13M60 60L47 47'/%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/svg%3E") center/80px, linear-gradient(180deg,#1f6570,#0f3a41);will-change:transform}
+.arch .arch-emblem{position:absolute;inset:0;display:grid;place-items:center}
+.arch .arch-emblem svg{width:62%;height:auto;opacity:.95}
+.arch-outline{position:absolute;inset:-14px;border:1.5px solid rgba(212,191,106,.5);border-radius:234px 234px 30px 30px;pointer-events:none}
+.arch-tag{position:absolute;left:-28px;bottom:42px;background:var(--paper);color:var(--teal);border-radius:16px;padding:16px 20px;display:flex;gap:14px;align-items:center;box-shadow:0 24px 50px -24px rgba(0,0,0,.6)}
+.arch-tag .ar{font-size:30px;color:var(--gold-d);line-height:1}
+.arch-tag b{display:block;font-family:var(--serif);font-weight:400;font-size:19px}
+.arch-tag small{font-size:13px;color:var(--muted)}
+
+/* ============ STEPS ============ */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;position:relative;counter-reset:s}
+.steps::before{content:"";position:absolute;top:44px;left:12%;right:12%;height:1px;background:repeating-linear-gradient(90deg,var(--gold) 0 8px,transparent 8px 16px);opacity:.6}
+.step{position:relative;text-align:center;padding:0 10px}
+.step-num{width:88px;height:88px;margin:0 auto 26px;border-radius:50%;background:var(--paper);border:1.5px solid var(--gold);display:grid;place-items:center;font-family:var(--ar);font-size:40px;color:var(--teal);position:relative;transition:background .3s,color .3s}
+.step:hover .step-num{background:var(--teal);color:var(--gold-l)}
+.step h3{font-size:23px;margin-bottom:10px}
+.step p{font-size:15.5px;color:var(--muted)}
+
+/* ============ HADITH ============ */
+.hadith{position:relative;overflow:hidden;background:var(--cream);padding:130px 0;text-align:center}
+.hadith-bg{position:absolute;inset:-30% 0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23174f58' stroke-opacity='.10' stroke-width='1'%3E%3Crect x='18' y='18' width='24' height='24'/%3E%3Crect x='18' y='18' width='24' height='24' transform='rotate%2845 30 30%29'/%3E%3Cpath d='M0 0l13 13M60 0L47 13M0 60l13-13M60 60L47 47'/%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/svg%3E");background-size:120px;opacity:.9;will-change:transform}
+.hadith-card{position:relative;max-width:900px;margin:0 auto;padding:64px 40px;background:rgba(251,248,241,.9);border-radius:28px;border:1px solid var(--line);backdrop-filter:blur(2px)}
+.ornament{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gold)}
+.ornament::before,.ornament::after{content:"";width:70px;height:1px;background:currentColor}
+.ornament svg{width:22px;height:22px}
+.hadith .ar{font-size:clamp(38px,5.8vw,68px);color:var(--teal);line-height:1.6;margin:26px 0 12px}
+.hadith blockquote{margin:0;font-family:var(--serif);font-size:clamp(20px,2.3vw,27px);color:var(--text)}
+.hadith cite{display:block;margin:20px 0 26px;font-style:normal;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-d);font-weight:700}
+
+/* ============ CONTACT ============ */
+.contact{padding:120px 0}
+.contact-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);border-radius:30px;overflow:hidden;background:var(--teal);color:var(--cream);box-shadow:0 50px 100px -60px rgba(12,42,47,.8)}
+.contact-left{padding:64px 56px;position:relative;overflow:hidden}
+.contact-left::before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23d4bf6a' stroke-opacity='.22' stroke-width='1'%3E%3Crect x='18' y='18' width='24' height='24'/%3E%3Crect x='18' y='18' width='24' height='24' transform='rotate%2845 30 30%29'/%3E%3Cpath d='M0 0l13 13M60 0L47 13M0 60l13-13M60 60L47 47'/%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/svg%3E");background-size:80px;opacity:.25}
+.contact-left > *{position:relative}
+.contact .eyebrow{color:var(--gold-l)}
+.contact h2{color:var(--cream);font-size:clamp(34px,4vw,50px);margin:18px 0 18px}
+.contact-left > p{color:rgba(246,241,230,.8);margin-bottom:34px}
+.channels{display:grid;gap:12px}
+.channel{display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:16px;background:rgba(246,241,230,.08);border:1px solid rgba(246,241,230,.14);text-decoration:none;transition:background .25s, transform .25s}
+.channel:hover{background:rgba(246,241,230,.16);transform:translateX(4px)}
+.channel .ci{width:44px;height:44px;border-radius:12px;background:var(--gold-l);color:var(--ink);display:grid;place-items:center;flex:none}
+.channel .ci svg{width:22px;height:22px}
+.channel small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,241,230,.65);font-weight:700}
+.channel b{font-weight:600;font-size:16px}
+.form{background:var(--paper);color:var(--text);padding:56px 52px;display:grid;gap:18px;align-content:start}
+.form h3{font-size:28px}
+.form > p{color:var(--muted);font-size:15px;margin-top:-6px}
+.field{display:grid;gap:7px}
+.field label{font-size:13.5px;font-weight:700;color:var(--teal)}
+.field input,.field select,.field textarea{width:100%;font:500 16px var(--sans);color:var(--text);background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;min-height:50px;transition:border-color .2s, box-shadow .2s}
+.field textarea{min-height:110px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px rgba(23,79,88,.12)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line);display:inline-flex;align-items:center;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;background:#fff;transition:all .2s}
+.seg input:checked + label{background:var(--teal);border-color:var(--teal);color:var(--cream)}
+.seg input:focus-visible + label{outline:2px solid var(--gold);outline-offset:2px}
+.form .btn{width:100%;margin-top:4px}
+.form-note{font-size:13px;color:var(--muted);text-align:center}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink);color:rgba(246,241,230,.75);padding:80px 0 34px;font-size:15px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.foot-brand svg{width:150px;height:auto;margin-bottom:20px}
+.foot-brand p{max-width:300px}
+footer h4{font-family:var(--serif);font-weight:400;font-size:19px;color:var(--cream);margin:0 0 18px}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+footer a{text-decoration:none;color:rgba(246,241,230,.75);transition:color .2s}
+footer a:hover{color:var(--gold-l)}
+.socials{display:flex;gap:10px;margin-top:22px}
+.socials a{width:44px;height:44px;border-radius:50%;border:1px solid rgba(246,241,230,.2);display:grid;place-items:center;transition:all .25s}
+.socials a:hover{background:var(--gold-l);color:var(--ink);border-color:var(--gold-l)}
+.socials svg{width:18px;height:18px}
+.foot-bottom{margin-top:60px;padding-top:26px;border-top:1px solid rgba(246,241,230,.12);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13.5px}
+.foot-bottom .ar{color:var(--gold-l);font-size:20px}
+
+/* ============ REVEAL ============ */
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+.js .reveal.d1{transition-delay:.08s}.js .reveal.d2{transition-delay:.16s}.js .reveal.d3{transition-delay:.24s}
+.js .hero-content > *{animation:rise 1.1s cubic-bezier(.2,.7,.2,1) both}
+.js .hero-content > :nth-child(2){animation-delay:.12s}
+.js .hero-content > :nth-child(3){animation-delay:.22s}
+.js .hero-content > :nth-child(4){animation-delay:.32s}
+.js .hero-content > :nth-child(5){animation-delay:.42s}
+.js .hero-content > :nth-child(6){animation-delay:.52s}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1080px){
+  .nav-links,.nav .nav-cta{display:none}
+  .menu-btn{display:inline-flex}
+  .mobile-panel{position:fixed;inset:0;z-index:49;background:var(--ink);display:flex;flex-direction:column;justify-content:center;gap:8px;padding:100px 32px 40px;transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.2,1)}
+  .mobile-panel.open{transform:none}
+  .mobile-panel a{color:var(--cream);text-decoration:none;font-family:var(--serif);font-size:34px;padding:8px 0;border-bottom:1px solid rgba(246,241,230,.1)}
+  .mobile-panel .btn{margin-top:24px;font-family:var(--sans);font-size:16px;border:0}
+  .intro-grid,.private-grid,.contact-card{grid-template-columns:1fr}
+  .intro-grid{gap:50px}
+  .private-grid{gap:60px}
+  .arch-wrap{margin:0 auto;max-width:380px}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:50px}
+  .steps::before{display:none}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .section,.contact{padding:84px 0}
+  .brand svg{width:50px}
+  .brand-text span{font-size:20px}
+  .pillars{grid-template-columns:1fr}
+  .pillar:nth-child(2),.pillar:nth-child(4),.pillar:nth-child(2):hover,.pillar:nth-child(4):hover{transform:none}
+  .steps{grid-template-columns:1fr}
+  .contact-left,.form{padding:40px 26px}
+  .row2{grid-template-columns:1fr}
+  .tabs{border-radius:20px}
+  .arch-tag{left:-8px}
+  .hadith-card{padding:44px 22px}
+  .foot-grid{grid-template-columns:1fr}
+  .scroll-cue{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Logo artwork, defined once and reused (colors come from --la / --lb) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="mu-logo" transform="translate(554.61308,25.26352)"><path style="fill:var(--la,#174f58)" d="m -302.06078,-25.263521 c -62.5268,22.1518065 -117.77057,44.316602 -165.72612,66.546175 -1.16568,0.638133 -2.42715,2.132215 -3.80334,4.512309 -1.35992,2.364541 -1.9932,4.510866 -1.89617,6.424224 16.74076,-8.135801 44.57006,-19.908963 83.49142,-35.309464 20.54543,-8.1358005 48.34553,-18.8574855 83.3812,-32.142364 0.77678,-0.233287 1.74956,-1.815794 2.88279,-4.755938 1.14958,-2.940064 1.70218,-4.699339 1.67022,-5.274942 z m 33.89376,19.2409235 c -2.90065,0.08017 -5.0588,3.950816 -6.45468,11.651548 -0.89043,4.309004 -1.62091,8.6347625 -2.15524,12.9437675 -1.2628,-2.411199 -2.24768,-4.574038 -2.95997,-6.471844 -4.85706,-8.9758765 -9.44053,-13.3797185 -13.74707,-13.2086415 -2.33145,0 -3.21871,2.334719 -2.68439,7.001511 0.17772,1.042258 1.47398,2.209577 3.90255,3.500755 2.42849,1.2911775 3.9139,1.8500255 4.44822,1.6788685 0.35627,-0.357548 0.63245,-0.695854 0.81017,-1.038009 3.41611,2.753433 5.84602,6.64244 7.28696,11.651547 1.24661,3.966769 2.40988,5.958131 3.49463,5.958131 0.89051,0.18679 1.88081,-4.266516 2.96556,-13.335707 1.08475,-9.0691915 2.88129,-13.59520955 5.3908,-13.59520955 1.24661,0 2.40988,0.68623405 3.49463,2.07080805 1.08475,1.384493 1.62057,2.065436 1.62057,2.065436 0.7284,0 1.26439,-1.039853 1.62049,-3.108817 0.53399,-2.06896305 0.53399,-3.37401 0,-3.887323 -2.15323,-2.597908 -4.40466,-3.892373 -6.7523,-3.876821 -0.0951,-0.0055 -0.18773,-0.0026 -0.28118,0 z m 50.90952,21.1263865 c -30.27581,11.04476 -58.1737,22.868267 -83.67331,35.484229 -0.68,0.481807 -1.19797,1.865419 -1.53789,4.152117 -0.34042,2.504594 -0.24196,4.202943 0.27534,5.089676 7.98182,-4.946898 21.08159,-11.265622 39.29557,-18.981425 14.296,-5.926865 28.58799,-11.86824 42.88398,-17.795106 0.46975,-0.248519 1.16652,-1.476846 2.10568,-3.670229 0.9389,-2.193383 1.15225,-3.625977 0.64996,-4.279262 z m -153.39012,7.965365 c -11.44649,0 -25.28876,9.538171 -41.51137,28.609864 -16.8055,19.771715 -25.20675,37.797145 -25.20675,54.084292 0,13.78264 16.07719,22.41893 48.24716,25.90349 11.73802,1.25999 17.60014,3.84339 17.60014,7.7324 0,1.38449 -6.5075,5.84862 -19.55688,13.36216 -15.34837,9.03809 -31.00412,16.49014 -46.93538,22.33916 -21.29018,7.93362 -40.42946,11.90047 -57.38064,11.90047 -24.8035,-2.52007 -10.13254,-0.016 -35.72935,-4.96245 l -23.49239,-7.29813 c 21.12823,19.30506 28.88293,34.17806 51.82448,35.01822 22.03492,0 47.96982,-6.6115 77.80851,-19.83417 27.39385,-12.2581 45.78621,-24.15912 55.20897,-35.7172 5.79613,-6.96912 8.69252,-15.94347 8.69252,-26.94157 0,-5.56908 -2.53912,-9.81796 -7.60669,-12.74255 -5.50468,-2.92451 -15.86926,-5.08743 -31.08806,-6.47185 -5.359,-0.42007 -11.00787,-2.08563 -16.94967,-5.01023 -6.81613,-3.188977 -10.2139,-6.392067 -10.2139,-9.596607 0,-6.6891 6.96131,-16.46032 20.86875,-29.340671 13.90743,-12.880436 24.12249,-19.320373 30.64718,-19.320373 2.33137,0 4.22253,1.196981 7.33102,5.16375 0.62744,1.704683 1.19564,3.013097 1.71427,4.062169 5.83643,16.843995 8.82928,49.473382 8.97362,97.894082 v 0.84208 c 0,0.13789 0.008,0.26856 0.0334,0.39763 -0.13767,11.34675 0.70253,21.21217 2.54104,29.61084 4.64663,-2.5046 9.24728,-5.05545 13.7968,-7.66883 -2.10476,-6.61133 -3.12435,-14.67194 -3.07579,-24.16105 0,0 -0.006,-0.005 -0.006,-0.005 0.20692,-30.60467 -1.02409,-58.061647 -3.72066,-82.349917 -1.02033,-8.073592 -2.69014,-16.42785 -5.00532,-25.061411 -1.67923,-5.885739 -2.91116,-9.37014 -3.69863,-10.470519 -0.66165,-1.815154 -1.64594,-3.519515 -3.03715,-5.068432 -3.04374,-3.406719 -7.02622,-4.898877 -11.07378,-4.898877 z m 173.80681,12.694928 c -2.88179,0 -6.14072,1.863895 -9.76734,5.566191 -3.61044,3.717929 -5.42392,7.546409 -5.42392,11.482074 0,3.017906 2.30266,5.33611 6.88463,6.953891 1.92662,0.451343 3.36655,0.915513 4.338,1.382248 -2.65518,3.702377 -6.86519,7.419587 -12.66124,11.121957 -2.65526,1.61786 -7.5905,4.40577 -14.82748,8.34143 -4.0962,2.31789 -5.90968,3.70134 -5.42392,4.16807 0.4856,0.91784 2.40946,0.68544 5.79321,-0.69906 6.26562,-2.3178 11.46443,-4.636 15.56055,-6.95381 7.23706,-4.16903 12.66157,-8.91623 16.28819,-14.251939 1.68383,0.933311 3.49731,2.100389 5.42392,3.484799 0.46975,0.46658 0.95284,0.81002 1.43861,1.04338 0.24279,0 0.48476,-0.70226 0.72756,-2.086677 0.71254,-2.317883 1.20131,-3.822948 1.44419,-4.522891 0,-0.917838 -2.03951,-2.427874 -6.168,-4.512389 1.68382,-3.484482 2.52452,-7.080636 2.52452,-10.782933 0,-6.486915 -2.05536,-9.734341 -6.15148,-9.734341 z m -3.95211,7.9919 c 2.89806,0 4.338,1.510276 4.338,4.528182 0,1.851148 -0.35711,3.936867 -1.08592,6.25475 -6.26562,-2.784538 -9.40356,-4.743832 -9.40356,-5.91051 0,-3.251194 2.05536,-4.872422 6.15148,-4.872422 z m -252.18302,11.143045 c -0.52814,0.08257 -1.22175,1.453918 -2.10008,4.136323 -3.4162,4.83795 -5.1152,9.751333 -5.1152,14.760363 0,4.49572 1.89408,6.73672 5.66638,6.73672 7.54469,0 11.31625,-4.06089 11.31625,-12.18114 0,-2.24012 -3.42012,-5.348853 -10.25244,-9.300069 0,-0.871101 0.27617,-1.900772 0.81016,-3.114108 0.35627,-0.699862 0.25865,-1.038089 -0.27534,-1.038089 -0.0167,0 -0.0334,-0.0026 -0.0501,0 z m 197.8009,7.557633 c -3.59425,0 -5.79913,3.656363 -6.59252,10.936533 -0.19441,7.09362 -0.29203,12.17785 -0.29203,15.24233 v 0.28059 c -2.78467,-6.12905 -6.27964,-11.10336 -10.47288,-14.94571 -3.80468,-3.2512 -7.18558,-4.88838 -10.18077,-4.88838 -1.79721,0 -2.68997,2.58404 -2.68997,7.76423 0,0.76239 1.60055,2.1169 4.79005,4.03034 3.18943,1.91336 5.19823,2.87577 5.99162,2.87577 0.40467,0 0.79098,-0.764 1.19606,-2.30378 1.79712,0.96442 4.002,3.65837 6.59252,8.06069 2.20187,3.64016 3.3996,6.14572 3.59384,7.48348 -1.79713,0 -3.3976,1.3339 -4.78998,4.025127 -1.19805,2.10006 -1.79696,4.12421 -1.79696,6.03757 0,0.94895 0.0926,1.42995 0.28619,1.42995 0.40466,0 1.00357,-0.75838 1.79696,-2.29848 0.79347,-1.5401 1.80046,-2.30386 2.99852,-2.30386 1.99145,0 3.47752,0.38721 4.48134,1.14929 -3.59425,0.5756 -6.68639,2.19715 -9.27682,4.88829 -2.99519,3.06456 -4.48135,6.61101 -4.48135,10.63999 0,3.25128 1.60056,11.21215 4.79006,23.85922 1.89625,8.54578 3.47152,15.88039 4.73482,22.0585 -2.4697,1.13653 -5.49651,4.23958 -9.08942,9.32123 -10.32687,14.42006 -22.18236,21.78248 -35.55289,22.1167 -0.13099,-0.016 -0.26199,-0.024 -0.40216,-0.024 -9.37411,0.016 -16.84229,-2.55582 -22.39554,-7.65824 -4.9057,2.9868 -10.43942,6.25611 -16.60792,9.78733 6.87345,12.20639 17.77285,18.45496 32.6811,18.74838 0.17689,0.0401 0.36128,0.0561 0.55652,0.0561 13.90743,0 25.7923,-6.19133 35.65209,-18.58948 6.37901,-7.93362 9.8406,-11.97767 10.4234,-12.11764 -0.58238,3.60898 -0.8709,7.09418 -0.8709,10.43869 0,13.5027 4.27258,23.52251 12.82101,30.07156 5.35901,4.18458 10.57025,6.26541 15.63781,6.26541 4.77613,0 7.17124,-7.03197 7.17124,-21.09464 0,-2.64449 -0.14351,-5.22251 -0.43554,-7.72703 1.02001,0.1395 1.95891,0.20122 2.83315,0.20122 1.41658,0 2.6521,-0.3375 3.70414,-1.00097 2.94237,-0.44813 6.16859,-1.13413 9.70126,-2.06551 6.15232,-1.66452 12.74526,-3.77838 19.77182,-6.36073 7.02655,-2.58228 14.2305,-5.39873 21.62943,-8.46321 7.38266,-3.06456 14.55181,-6.12961 21.51353,-9.19417 6.94563,-3.06449 13.3601,-5.88093 19.23716,-8.46321 5.87706,-2.5668 10.8299,-4.69621 14.89365,-6.36065 0.71254,-0.98005 1.66721,-2.33584 2.81671,-4.07804 1.16568,-1.74228 2.28306,-3.54629 3.36789,-5.42862 1.10086,-1.88226 2.03976,-3.72996 2.83315,-5.53445 0.79348,-1.80449 1.19614,-3.27051 1.19614,-4.39053 h -0.64496 c -1.45712,0 -3.5935,0.54834 -6.41063,1.66828 -2.81705,1.10447 -6.08699,2.50363 -9.77836,4.16807 -3.69137,1.66452 -7.67594,3.48408 -11.95019,5.42855 -4.29045,1.94454 -8.4831,3.7641 -12.6116,5.42862 -4.12857,1.67999 -8.04939,3.06392 -11.74077,4.18394 -3.69137,1.10447 -6.91033,1.663 -9.66263,1.663 -4.35519,0 -9.16393,-1.38353 -14.45819,-4.16807 -5.29418,-2.78454 -10.21773,-6.22076 -14.78335,-10.3275 -4.54943,-4.10691 -8.40066,-8.55548 -11.50915,-13.36233 -3.12476,-4.80676 -4.67975,-9.2276 -4.67975,-13.27213 0,-2.36454 1.92853,-4.1073 5.76558,-5.22732 3.85333,-1.12002 8.30472,-1.87849 13.37228,-2.29849 5.06757,-0.42007 13.61282,-1.68111 25.6422,-3.76563 8.83987,-1.94446 15.80118,-4.98136 20.86874,-9.08819 5.06757,-4.10674 8.64931,-7.963437 10.75406,-11.587967 2.10476,-3.62454 3.62487,-6.6406 4.56403,-9.0829 0.9389,-2.44231 1.52029,-4.0467 1.73071,-4.80893 0.21026,-0.76239 0.3254,-1.55381 0.3254,-2.3938 -0.72839,-1.26008 -1.58728,-1.19883 -2.6072,0.20122 -3.48095,5.42902 -7.4948,9.05259 -12.06042,10.85709 -4.5657,1.82004 -7.57681,2.92715 -9.01775,3.34715 -1.45713,0.42008 -2.97733,0.84048 -4.56403,1.26047 -1.60281,0.42008 -5.65145,1.10143 -12.17614,2.08139 -8.40275,1.26008 -14.34514,2.13414 -17.82609,2.61635 -3.48086,0.49784 -6.84934,1.15129 -10.10359,1.991357 -3.27044,0.82444 -5.9081,1.8647 -7.93192,3.12469 -2.7523,1.68007 -5.21666,3.76611 -7.38616,6.27062 -2.16951,2.5046 -4.06325,5.28753 -5.64987,8.3521 -1.45712,2.64448 -2.71859,5.59898 -3.80334,8.86572 -1.08467,3.26675 -1.6371,7.00063 -1.6371,11.16958 0,3.76459 0.76594,7.70362 2.28756,11.81044 1.52179,4.10683 3.54345,8.07367 6.08532,11.90047 2.54188,3.8268 5.37453,7.34006 8.4831,10.5446 3.10849,3.20461 6.2637,5.84918 9.45312,7.93369 -3.3351,1.52447 -6.43933,2.56472 -9.3374,3.12469 -2.89806,0.56038 -5.54123,0.90333 -7.93742,1.04338 -2.39612,0.1403 -4.41768,0.25013 -6.08532,0.31266 -1.02468,0.0401 -1.89541,0.17075 -2.61822,0.39763 -13.8925,-0.68624 -23.13536,-4.90016 -27.75329,-12.62607 -1.41007,-2.41512 -2.40496,-4.14722 -3.00962,-5.25377 -1.64043,-9.03232 -4.90561,-25.01035 -9.82808,-48.02548 -0.21026,-1.52455 1.94247,-3.15636 6.42715,-4.88308 4.48468,-1.72673 8.82068,-2.76755 13.014,-3.15652 0.40467,0 0.95743,-0.764 1.65362,-2.30385 0.69585,-1.52447 0.9384,-2.76923 0.74425,-3.73373 -0.21026,-0.76239 -1.74865,-2.34979 -4.64672,-4.74535 -2.89806,-2.395647 -4.83895,-3.590867 -5.84277,-3.590867 0.40467,-8.63356 0.79098,-16.10317 1.19614,-22.43448 0,-3.45345 1.49159,-5.17962 4.48677,-5.17962 1.99136,0 3.68979,0.9677 5.08217,2.88106 0.98754,1.33784 1.68423,1.33784 2.08906,0 0.59907,-3.26675 0.59907,-5.18131 0,-5.75691 -2.80094,-2.691143 -5.39138,-4.030342 -7.73893,-4.030342 z m -239.16351,1.853633 c -1.0195,0.09059 -2.28113,1.581866 -3.78682,4.47527 -1.55424,2.98672 -2.33162,5.14964 -2.33162,6.47193 12.09412,10.12692 18.12921,21.48593 18.12921,34.101897 0,2.9868 -0.34042,6.06772 -1.03627,9.21004 -0.17772,0.6686 -0.0834,1.11754 0.25865,1.36638 0.34042,0.24852 0.59907,0.45375 0.77679,0.6245 1.21424,-0.49784 2.15356,-1.91376 2.84975,-4.23164 1.7323,-4.65124 2.60671,-9.53713 2.59069,-14.68621 0,-10.951437 -3.36848,-21.236777 -10.10368,-30.866017 -2.25043,-3.15788 -4.65789,-5.299873 -7.24833,-6.466551 -0.0334,0 -0.0667,-0.003 -0.0993,0 z m 39.77516,0.683028 c 0.008,-0.0017 0.025,0 0.0417,0 0.17772,0 1.56601,0.902205 4.17263,2.722252 2.60662,1.80449 3.90255,2.89372 3.90255,3.23596 0,0.51307 -1.03611,1.16547 -3.0923,1.92779 -2.0723,0.77762 -3.54161,1.16515 -4.44822,1.16515 -1.97518,0 -2.96556,-0.94622 -2.96556,-2.84402 0,-0.68463 0.30537,-1.90117 0.93706,-3.6279 0.61159,-1.672778 1.10136,-2.527364 1.45521,-2.579232 z m -59.97691,27.804822 c -0.5949,-0.0561 -1.62701,1.02983 -3.09781,3.24654 -1.06857,1.35339 -1.93889,3.21801 -2.65135,5.598017 -4.5818,17.99833 -7.24157,30.0698 -7.95386,36.18337 -0.69586,10.53145 1.07173,18.69691 5.31362,24.46817 1.40856,2.03786 3.52767,2.89501 6.3609,2.55278 3.17332,-0.34232 5.8275,-2.04091 7.94844,-5.10547 1.06857,-1.69562 1.94439,-4.75506 2.65685,-9.17293 0.69586,-4.76019 0.53399,-7.14453 -0.53482,-7.14453 -1.05238,0 -1.76601,0.84192 -2.1222,2.56865 -1.42466,4.76011 -3.90079,7.13916 -7.43022,7.13916 -1.40856,0 -2.64108,-0.68544 -3.70964,-2.03898 -1.76475,-2.03786 -2.65134,-6.10997 -2.65134,-12.22355 0,-8.50914 2.29757,-21.25104 6.89564,-38.23822 1.05238,-3.048927 1.58745,-5.085027 1.58745,-6.111727 0,-1.10599 -0.20441,-1.68232 -0.61158,-1.72128 z m 62.77702,30.166877 c -4.02595,0.11303 -7.00044,5.48298 -8.92956,16.1374 -1.23043,5.97352 -2.23734,11.94336 -2.98208,17.91688 -1.7323,-3.34451 -3.10783,-6.32682 -4.09546,-8.95575 -6.71893,-12.42934 -13.04796,-18.51574 -19.02214,-18.28237 -3.22196,0 -4.47091,3.22033 -3.72616,9.67606 0.2428,1.43115 2.05594,3.05174 5.40731,4.84076 3.35137,1.78885 5.40673,2.56359 6.15148,2.33023 0.50145,-0.48261 0.87608,-0.94774 1.11896,-1.42995 4.72757,3.82679 8.07919,9.19409 10.07055,16.13211 1.74857,5.49123 3.36664,8.24611 4.85614,8.24611 1.23051,0.23329 2.60596,-5.91396 4.09554,-18.46771 1.4895,-12.55367 3.98239,-18.82253 7.46334,-18.82253 1.74848,0 3.36656,0.95183 4.85614,2.86526 1.4895,1.91336 2.23783,2.8599 2.23783,2.8599 0.98764,0 1.73055,-1.4435 2.23242,-4.3058 0.74508,-2.87785 0.74508,-4.67064 0,-5.38613 -2.99519,-3.57788 -6.10493,-5.36449 -9.34299,-5.34918 -0.13183,-0.007 -0.26199,-0.008 -0.39132,-0.005 z m 313.78043,59.02566 c -1.73697,0.0641 -3.65116,1.15345 -5.72154,3.27829 -2.13704,2.19347 -3.20794,3.95274 -3.20794,5.27502 0,1.60223 1.39271,3.25168 4.14501,4.97841 -1.52187,0.93331 -3.11099,2.92499 -4.76244,5.974 -1.52187,2.78454 -2.28197,4.89848 -2.28197,6.36065 0,3.04901 2.47638,4.63721 7.44682,4.77719 7.02656,0 12.76119,-2.33408 17.18113,-6.96977 0.69585,-0.6686 0.88701,-1.13405 0.61158,-1.41407 -0.27533,-0.12426 -0.82267,-0.0641 -1.64811,0.20122 -5.09993,2.13117 -9.58553,3.18834 -13.45496,3.18834 -4.69519,0 -7.04441,-0.99592 -7.04441,-2.98704 0,-1.32229 1.7328,-3.37489 5.18129,-6.15943 3.17332,-2.78454 5.92604,-4.57164 8.27367,-5.36497 1.10094,-0.52911 1.79738,-1.05998 2.07255,-1.58892 0.55068,-2.13118 0.63078,-3.18827 0.20943,-3.18827 -0.68001,-0.12426 -1.58345,0.26375 -2.68439,1.19698 -1.65145,1.19779 -2.90048,1.79006 -3.72625,1.79006 -3.86942,0 -5.79312,-0.85779 -5.79312,-2.58452 0,-0.5291 0.48393,-1.0546 1.45512,-1.58355 0.97145,-0.5291 1.6517,-0.79446 2.07255,-0.79446 0.82602,0 1.37294,0.40325 1.64811,1.19691 0.12933,0.38881 0.34209,0.65416 0.61743,0.79446 0.42135,0 0.82518,-0.46498 1.24578,-1.39821 0.40466,-0.93339 0.61742,-1.669 0.61742,-2.19795 0,-1.85115 -0.7601,-2.78045 -2.28197,-2.78045 -0.0584,0 -0.11514,-0.002 -0.17104,0 z m -123.87833,14.0613 c 4.79223,4.72901 10.7347,7.73248 17.826,8.977 0.58239,0.84 0.87091,2.10103 0.87091,3.76555 0.14518,1.66452 0.002,2.49979 -0.43554,2.49979 -3.33518,0 -7.0903,-1.57097 -11.29973,-4.69774 -4.20951,-3.12669 -6.52469,-6.64004 -6.96172,-10.5446 z m 91.14766,2.9076 c -0.74508,0 -1.6668,0.73514 -2.80019,2.16613 -1.13331,1.43115 -1.87656,2.68689 -2.24885,3.76025 -0.29119,0.7159 -0.89093,1.52864 -1.83008,2.43092 -1.68374,1.5401 -5.79513,3.6821 -12.336,6.46664 -2.70375,1.07336 -7.06185,2.73828 -13.03603,4.97832 -5.22943,1.97565 -8.44839,3.19267 -9.66272,3.64377 -0.46974,0.0802 -0.70003,0.17156 -0.70003,0.26456 -0.0834,0.0802 -0.0417,0.17156 0.14852,0.26535 h 0.69419 c 3.44857,-0.45134 7.51374,-1.18616 12.19274,-2.16612 1.13331,-0.27979 4.58313,-1.61418 10.37926,-4.04093 7.01037,-2.9557 11.1679,-5.16784 12.47935,-6.59907 1.11712,-1.33775 1.83041,-2.73684 2.10559,-4.16807 2.15331,1.78894 4.58322,2.6905 7.28696,2.6905 1.02,0 1.53789,-1.38353 1.53789,-4.16807 0,-1.16667 -0.43804,-2.37841 -1.34491,-3.63848 -0.87432,-1.26007 -1.84635,-1.88546 -2.86635,-1.88546 z m -0.41885,3.3789 c 1.50569,0 2.24894,0.97965 2.24894,2.9553 -0.74509,-0.093 -1.60339,-0.35915 -2.60721,-0.79446 -0.98755,-0.45135 -1.47173,-0.7616 -1.47173,-0.94806 0,-0.80898 0.61576,-1.21278 1.83,-1.21278 z M -264.04954,316.656 c -0.58238,0 -1.37594,0.20443 -1.53789,0.35996 -0.68,6.1757 -2.02407,13.50173 -3.36781,19.0397 0.22695,0.43531 3.43264,1.37063 3.88595,1.07505 1.86195,-4.24679 3.36839,-7.6839 4.93882,-10.1262 1.94289,-3.01791 4.02954,-3.5968 6.36099,-3.87682 5.8285,-0.43531 21.01835,-0.43451 25.95633,-0.43451 0.22695,0 0.37129,0.43371 0.22612,0.65176 -4.71138,8.61809 -31.92568,49.07984 -40.68462,60.00018 -0.0834,0.35755 0.14435,2.16517 0.45223,2.36735 2.68755,-0.21806 7.84948,-0.22046 11.21704,-0.35995 9.42275,0.21805 24.07911,0.43771 38.3751,0.5772 4.71138,0 5.67915,-0.5764 6.27822,-1.2923 1.94281,-3.67119 5.39264,-15.58913 5.99162,-18.6848 -0.37212,-0.7159 -3.36647,-1.6464 -3.81986,-1.36638 -3.05993,6.47129 -6.05695,11.49779 -8.59883,13.72236 -2.08856,2.00667 -3.88452,2.51565 -6.13496,2.51565 -9.27699,0.1395 -22.36099,-0.21565 -25.12948,-0.65176 -0.37212,-0.0802 -0.37129,-0.49864 -0.22611,-0.79446 7.93317,-11.79152 34.0991,-51.73755 38.81047,-59.63998 0,-0.43531 -0.0834,-1.78814 -0.29202,-1.94375 -3.96663,0.21806 -11.3689,0.35515 -17.95834,0.35515 h -24.67208 c -4.71138,0 -7.48045,-0.21646 -9.56894,-1.42995 -0.14518,-0.0481 -0.30704,-0.0641 -0.50145,-0.0641 z m -281.33636,1.15458 c -0.45306,0.35754 -0.45473,2.87753 -0.0834,3.45305 2.02383,0.21806 4.71088,0.49865 5.90894,1.01164 2.6228,0.71589 3.37097,2.6602 3.51674,5.46029 0.22694,9.19361 -0.003,31.90106 0.88742,39.44571 1.34382,11.41818 8.82694,20.19427 28.27143,20.19427 14.65219,0 26.69349,-5.89335 28.94393,-24.42055 1.27899,-7.46688 1.28266,-18.96378 1.71978,-32.76206 0.22694,-5.24239 0.97111,-7.18621 4.11197,-7.90179 1.34382,-0.49784 3.13995,-0.7159 4.85614,-1.01155 0.45306,-0.43531 0.45306,-3.01759 0,-3.45314 -2.31518,0 -6.20338,0.35514 -13.01951,0.35514 -6.0552,0 -10.9921,-0.35514 -14.13296,-0.35514 -0.37213,0.5756 -0.45139,2.79969 -0.14351,3.45314 2.68755,0.21805 4.71263,0.49864 6.50975,1.01155 3.59426,0.65337 4.78756,2.43862 4.93332,7.26101 0.51814,8.83583 0.29202,23.6491 -0.22611,31.90932 -1.11713,16.2405 -10.02041,18.96026 -18.76307,18.96026 -11.07421,0 -17.1314,-5.02538 -18.92853,-11.93229 -1.05229,-3.09567 -1.49,-8.04096 -1.57093,-12.56778 -0.22695,-5.81792 -0.29119,-18.32622 0,-27.81541 0.0834,-3.59343 0.74842,-5.32032 3.51674,-5.95813 1.42475,-0.35755 3.05943,-0.65016 5.39079,-0.85266 0.45306,-0.5756 0.45306,-3.09535 0,-3.45314 -3.65899,0 -9.34115,0.35515 -15.70389,0.35515 -6.11994,-0.0321 -13.0009,-0.38641 -15.99609,-0.38641 z m 90.34292,0 c -0.45305,0.21805 -0.68083,2.87753 -0.29202,3.45305 3.659,0.49784 6.13371,1.01164 8.14134,1.5094 2.46094,0.85555 3.0616,3.0935 2.91592,5.10026 -0.51814,9.48918 -2.85159,37.36375 -3.96871,45.76403 -0.74509,5.32015 -1.71219,6.75531 -5.22543,7.62649 -1.57051,0.43531 -3.37156,0.7159 -5.60581,1.01156 -0.45306,0.43531 -0.45306,2.87745 0,3.45305 3.14086,0 8.3058,-0.35995 13.68099,-0.35995 6.79986,0 11.88428,0.35995 14.73379,0.35995 0.45305,-0.43531 0.67916,-3.09527 0.22611,-3.45305 -3.28663,-0.43531 -5.31112,-0.79446 -7.25392,-1.2923 -3.43239,-1.01108 -3.88603,-2.87682 -3.88603,-6.89024 0.0834,-8.61809 1.34849,-31.96977 2.02849,-41.24114 0.22695,-0.13949 0.45139,-0.21726 0.67834,-0.21726 6.96181,15.88271 19.59017,43.47798 22.43967,52.7338 0.45306,0 3.65625,0.14109 4.25532,-0.21725 3.59425,-9.76914 19.96305,-43.46403 24.01061,-52.31541 0.22694,-0.13949 0.45472,-0.13949 0.60074,0 0.0834,10.28253 0.29286,35.06159 0.0834,43.04187 0,2.7378 -0.52064,4.4521 -2.68997,5.10547 -1.57043,0.49784 -3.36631,0.71669 -6.13488,1.2923 -0.37212,0.43531 -0.37212,2.87745 0,3.45305 3.88561,0 9.42384,-0.35995 15.78658,-0.35995 8.96936,0 13.98653,0.35995 17.19214,0.35995 0.45306,-0.5756 0.5173,-2.87753 0.22611,-3.45305 L -369.5271,381.2 c -3.36764,-0.79366 -4.02871,-2.80129 -4.25532,-6.25475 -0.68,-7.54465 -1.5716,-40.24153 -1.34499,-47.4906 0,-2.52007 0.68084,-4.24687 3.14187,-4.96253 1.65145,-0.49784 3.82161,-0.79286 7.25392,-1.22865 0.51814,-0.43531 0.51814,-3.23532 0,-3.45313 -5.8285,0 -10.54288,0.35514 -22.58844,0.35514 -0.22695,1.78894 -1.05297,3.81381 -2.08916,6.31832 -4.25798,9.48919 -17.12898,35.27908 -19.58984,39.8059 -0.14517,0.0802 -0.37379,0.21806 -0.60073,0 -2.3962,-4.44905 -13.53064,-27.37793 -19.13245,-39.37163 -1.19805,-2.58228 -2.02774,-4.5281 -2.25444,-6.75259 -11.49505,0 -17.83768,-0.35514 -24.05474,-0.35514 z m 142.11784,0.12185 c -1.05229,0.0802 -2.46236,0.21726 -4.71279,0.21726 -2.10476,0.016 -3.82028,-0.12346 -4.87266,-0.20122 -0.22695,1.58675 -1.19864,4.74519 -2.08907,6.96976 -2.68764,7.46688 -12.7924,33.91479 -18.92853,47.71306 -3.28662,7.68462 -4.85789,8.555 -12.93682,9.62836 -0.45306,0.43531 -0.37212,3.01751 0,3.45314 2.91425,0 7.10974,-0.35995 12.48485,-0.35995 6.65418,0 11.81645,0.35995 14.58494,0.35995 0.51813,-0.43531 0.74591,-3.09535 0.29202,-3.45314 -2.08857,-0.27978 -3.81928,-0.65336 -5.60022,-1.01155 -3.14094,-0.7159 -3.2852,-2.08652 -3.2852,-3.81325 0,-2.22449 3.05767,-10.20516 5.30811,-15.88319 0.22694,-0.49784 0.74842,-1.06975 1.20164,-1.06975 1.42467,-0.0802 3.28229,-0.0802 9.3374,-0.0802 4.11239,0 8.14535,-0.14029 9.87765,0 0.37212,0 0.89092,0.49704 1.05287,0.71509 1.86188,4.52674 5.00157,13.08046 6.13488,17.24949 0.29119,0.79366 0.29369,1.94679 -1.19605,2.5846 -1.27908,0.49784 -3.59759,0.85659 -5.83184,1.29222 -0.51814,0.35755 -0.37213,2.87753 0,3.45313 3.28662,0 8.68151,-0.35995 16.16145,-0.35995 6.8808,0 12.41485,0.35995 15.3291,0.35995 0.45306,-0.4353 0.68084,-3.09534 0.29203,-3.45313 -8.37038,-1.22897 -9.05046,-1.86598 -12.64472,-10.1262 -4.03137,-9.41143 -15.02138,-39.88711 -18.16233,-48.14733 -0.68,-2.00676 -1.34357,-4.31093 -1.79687,-6.03766 z m 159.91089,0 c -1.05238,0.0802 -2.46236,0.21726 -4.7128,0.21726 -2.10475,0.016 -3.83655,-0.12346 -4.87274,-0.20122 -0.22695,1.58675 -1.19856,4.74519 -2.08907,6.96976 -2.68755,7.46688 -12.7924,33.91479 -18.92844,47.71306 -3.28663,7.68462 -4.85789,8.555 -12.93682,9.62836 -0.45306,0.43531 -0.37213,3.01751 0,3.45314 2.91425,0 7.10965,-0.35995 12.48485,-0.35995 6.65418,0 11.82195,0.35995 14.59044,0.35995 0.51814,-0.43531 0.74007,-3.09535 0.28702,-3.45314 -2.08857,-0.27978 -3.81937,-0.65336 -5.60031,-1.01155 -3.14094,-0.7159 -3.2852,-2.08652 -3.2852,-3.81325 0,-2.22449 3.05767,-10.20516 5.30811,-15.88319 0.22694,-0.49784 0.74842,-1.06975 1.20164,-1.06975 1.42476,-0.0802 3.28229,-0.0802 9.33749,-0.0802 4.1123,0 8.14526,-0.14029 9.87764,0 0.37213,0 0.89085,0.49704 1.0528,0.71509 1.86187,4.52674 5.00156,13.08046 6.13496,17.24949 0.29119,0.79366 0.29369,1.94679 -1.19614,2.5846 -1.27907,0.49784 -3.59751,0.85659 -5.83184,1.29222 -0.51814,0.35755 -0.37212,2.87753 0,3.45313 3.28671,0 8.68159,-0.35995 16.16146,-0.35995 6.88087,0 12.41485,0.35995 15.3291,0.35995 0.45305,-0.4353 0.68083,-3.09534 0.29202,-3.45313 -8.37029,-1.22881 -9.05046,-1.86598 -12.64471,-10.1262 -4.03129,-9.41143 -15.02139,-39.88711 -18.16225,-48.14733 -0.68001,-2.00676 -1.34366,-4.31093 -1.79696,-6.03766 z m -168.90103,13.64291 c 0.17772,-0.016 0.39299,0.0321 0.45723,0.0321 2.02374,5.32016 6.05378,17.0954 7.93184,22.27559 0,0.35754 -0.22528,0.79446 -0.45222,0.79446 -1.19806,0.13949 -4.33834,0.13788 -7.7059,0.13788 -3.65899,0 -6.73928,0.002 -7.93734,-0.13788 -0.37212,-0.0802 -0.45055,-0.28139 -0.36962,-0.79446 2.02374,-5.46021 5.76234,-16.45767 7.93184,-22.27559 0.0334,-0.016 0.0751,-0.0321 0.14351,-0.0321 z m 159.89979,0 c 0.17772,-0.016 0.38714,0.0321 0.45222,0.0321 2.02383,5.32016 6.05387,17.0954 7.93193,22.27559 0,0.35754 -0.22528,0.79446 -0.45223,0.79446 -1.19805,0.13949 -4.33833,0.13788 -7.70589,0.13788 -3.659,0 -6.73937,0.002 -7.93743,-0.13788 -0.37212,-0.0802 -0.45055,-0.28139 -0.36962,-0.79446 2.02382,-5.46021 5.76242,-16.45767 7.93192,-22.27559 0.0501,-0.016 0.10013,-0.0321 0.14852,-0.0321 z"/><path style="fill:var(--lb,#8a8a32)" d="m -332.38824,16.750831 -10.86436,18.796077 22.60505,12.737256 10.85885,-18.790786 z m 11.49814,48.380378 c -0.87416,0 -1.96275,3.331204 -3.27411,10.020374 -1.14949,5.98908 -1.73079,9.75102 -1.73079,11.27549 0,1.25999 0.72506,2.22873 2.16624,2.92876 2.18569,7.93362 5.88257,16.846317 11.09581,26.724397 9.56844,18.37167 14.34239,27.90447 14.34239,28.60449 0,3.34459 -10.88213,11.49915 -32.60943,24.4418 -23.03866,13.78264 -47.15982,26.18087 -72.36807,37.17897 -17.67974,7.79357 -41.43287,16.98309 -71.28766,27.56119 -16.95118,6.12905 -25.43277,9.67582 -25.43277,10.65587 0,0.27979 0.56486,0.42409 1.73087,0.42409 2.75231,0 11.59117,-1.18392 26.51853,-3.54846 37.09194,-5.84902 55.85777,-8.83694 56.29489,-8.97692 13.92362,-4.30908 34.86053,-14.33916 62.82108,-30.06626 26.66537,-15.16714 42.5293,-25.54587 47.59686,-31.11494 9.85979,-11.27813 14.78335,-24.01972 14.78335,-38.22236 0,-6.39352 -2.75272,-14.54278 -8.27359,-24.43642 -6.21707,-11.138147 -9.55634,-17.826767 -9.99346,-20.051257 6.52469,2.78454 10.1358,3.82479 10.86436,3.12469 0.87424,-0.83999 -4.337,-7.23095 -15.63781,-19.2091 -4.64655,-4.86905 -7.16948,-7.314003 -7.60669,-7.314003 z m 66.49226,200.613051 c -0.0667,1.85115 -0.26115,4.78937 -0.60073,8.83398 l 1.48816,0.0641 c 0.53399,-1.91344 1.11629,-3.31284 1.76392,-4.18402 0.32373,-0.46658 0.66415,-0.82549 1.03627,-1.0433 0.37213,-0.23329 1.03945,-0.38962 1.96225,-0.51388 0.92288,-0.10902 2.29874,-0.16915 4.11205,-0.16915 h 8.6594 c -1.68373,2.25567 -8.70879,11.51198 -21.07817,27.78366 l 0.43554,0.73113 h 26.35874 c 0.12933,-0.45135 0.74509,-3.19011 1.83009,-8.23024 l -1.45521,-0.28059 c -0.90661,2.33336 -1.84493,3.99836 -2.80011,4.97832 -0.72839,0.69987 -1.76475,1.16524 -3.0923,1.41416 -1.32763,0.24852 -3.51599,0.37599 -6.57592,0.37599 -3.67519,0 -6.33045,-0.0946 -7.998,-0.28059 4.27417,-5.86466 11.18934,-15.07566 20.7254,-27.59823 l -0.408,-0.69906 h -20.51047 c -0.82602,0 -1.40698,-0.0481 -1.7308,-0.18599 -0.32373,-0.13949 -0.63411,-0.46658 -0.92605,-0.9956 z m -120.68148,0.45054 -1.73621,0.41847 -10.4234,24.3464 c -0.58322,1.43115 -1.11796,2.44423 -1.58746,3.06649 -0.45305,0.6221 -0.954,1.04306 -1.48824,1.27634 -0.53399,0.23329 -1.39263,0.43291 -2.59069,0.60366 v 1.33992 h 10.95798 v -1.33992 c -1.86188,-0.20202 -2.9624,-0.5283 -3.33477,-0.96385 -0.37213,-0.43531 -0.29203,-1.37054 0.2428,-2.80169 0.61492,-1.82005 1.3288,-3.76146 2.12219,-5.79924 h 10.65477 c 0.95526,2.42667 1.82566,4.71176 2.65134,6.85849 0.33959,0.93331 0.32373,1.56936 -0.0167,1.89604 -0.33958,0.32628 -1.2789,0.59244 -2.83323,0.81034 v 1.33992 h 12.55102 v -1.3558 c -1.63526,-0.17156 -2.76916,-0.53071 -3.38441,-1.07512 -0.61493,-0.54434 -1.32881,-1.83368 -2.12211,-3.87153 -1.97527,-4.93127 -5.19422,-13.17522 -9.66272,-24.74892 z m 100.45762,0 -1.7308,0.41847 -10.42882,24.3464 c -0.58239,1.43115 -1.11796,2.44423 -1.58746,3.06649 -0.45305,0.6221 -0.954,1.04306 -1.48824,1.27634 -0.53399,0.23329 -1.39263,0.43291 -2.59069,0.60366 v 1.33992 h 10.96348 v -1.33992 c -1.86187,-0.20202 -2.96239,-0.5283 -3.33476,-0.96385 -0.37213,-0.43531 -0.29203,-1.37054 0.24279,-2.80169 0.61493,-1.82005 1.32881,-3.76146 2.12211,-5.79924 h 10.64935 c 0.95517,2.42667 1.83108,4.71176 2.65685,6.85849 0.33958,0.93331 0.32373,1.56936 -0.0167,1.89604 -0.34042,0.32628 -1.27899,0.59244 -2.83323,0.81034 v 1.33992 h 12.54551 v -1.3558 c -1.63526,-0.17156 -2.76924,-0.53071 -3.38442,-1.07512 -0.61492,-0.54434 -1.32337,-1.83368 -2.11668,-3.87153 -1.97518,-4.93127 -5.19965,-13.17522 -9.66814,-24.74892 z m -161.20615,0.71509 v 1.39812 c 0.63161,0.0641 1.13206,0.11224 1.48825,0.15874 0.35627,0.0321 0.73006,0.10822 1.11896,0.21725 0.38881,0.10903 0.66498,0.21966 0.84328,0.32869 0.17856,0.10902 0.35628,0.29181 0.53483,0.55636 0.17772,0.26455 0.28785,0.52991 0.33625,0.77843 0.0501,0.26455 0.0834,0.65657 0.11597,1.15457 0.0334,0.49784 0.0334,1.00666 0.0167,1.51998 -0.0167,0.51307 -0.0668,1.18279 -0.13266,2.00731 l -0.72757,9.37944 c -0.27533,3.57788 -0.5974,6.46054 -0.95359,8.65392 -0.1944,0.93331 -0.5974,1.60247 -1.19613,1.99136 -0.59907,0.38882 -1.62308,0.64856 -3.03165,0.77362 v 1.40349 h 11.65809 v -1.40349 c -1.76476,-0.17076 -2.94562,-0.42008 -3.56088,-0.76239 -0.59907,-0.34232 -0.92155,-1.02326 -0.97011,-2.06552 -0.11347,-1.8667 -0.0843,-4.4335 0.0934,-7.6847 l 0.72756,-13.11332 h 0.13266 l 11.18951,24.74892 h 1.00324 l 12.15961,-25.3897 h 0.19274 l 0.15936,18.73243 c 0.0167,0.93339 0.0334,1.631 0.0167,2.11321 0,0.48181 -0.0584,0.94734 -0.17605,1.41408 -0.11347,0.4818 -0.2453,0.79847 -0.37463,0.9851 -0.12932,0.18679 -0.37212,0.35353 -0.74424,0.54032 -0.37213,0.18679 -0.74175,0.31346 -1.1465,0.37599 -0.40466,0.0641 -0.99155,0.12266 -1.7363,0.18519 v 1.33992 h 13.38888 v -1.3558 c -0.79347,-0.0641 -1.40389,-0.12265 -1.8411,-0.16915 -0.4372,-0.0641 -0.84604,-0.18919 -1.23468,-0.37599 -0.38881,-0.18679 -0.6483,-0.36877 -0.79348,-0.54032 -0.14518,-0.17076 -0.28952,-0.51388 -0.41885,-0.99568 -0.12932,-0.48181 -0.21025,-0.96819 -0.24279,-1.41937 -0.0334,-0.45134 -0.0667,-1.14864 -0.0834,-2.11314 l -0.46891,-16.84712 c -0.0167,-0.5756 -0.0334,-1.02975 -0.0334,-1.38754 0,-0.35755 3.3e-4,-0.71189 0.0167,-1.06984 0,-0.35754 0.0668,-0.64053 0.14852,-0.85795 0.0834,-0.21805 0.16103,-0.40164 0.22611,-0.60366 0.0668,-0.20202 0.20859,-0.34632 0.41885,-0.45535 0.21026,-0.093 0.4055,-0.19802 0.56736,-0.29101 0.16187,-0.093 0.42135,-0.16034 0.79348,-0.20683 0.37212,-0.0481 0.71254,-0.0722 1.01967,-0.12186 0.30788,-0.0481 0.74592,-0.081 1.32847,-0.12746 v -1.39812 h -8.69812 l -11.40994,22.9429 -11.25568,-22.9429 z m 128.88882,0 v 1.39812 l 1.0694,0.0641 c 1.1495,0.13949 1.78286,0.38801 1.89617,0.71509 0.0968,0.32628 -0.22612,0.91872 -1.00324,1.77427 -1.53806,1.8356 -4.26082,4.51359 -8.13033,8.04481 -1.50568,1.30673 -2.72026,2.05365 -3.62687,2.24028 v -8.04481 c 0,-2.08451 0.23028,-3.37337 0.68334,-3.85558 0.45305,-0.4826 1.66755,-0.79686 3.61035,-0.9216 v -1.3982 h -13.17937 v 1.3982 c 0.74508,0.0481 1.29301,0.0962 1.69775,0.1427 0.40467,0.0481 0.79682,0.14029 1.18504,0.28058 0.38882,0.1395 0.6483,0.29502 0.81017,0.46578 0.16186,0.17156 0.30621,0.4321 0.43553,0.82091 0.12933,0.38881 0.20943,0.79366 0.22611,1.2446 0.0167,0.45135 0.0334,1.05966 0.0334,1.82189 v 18.02807 c 0,1.10447 -0.0334,1.92851 -0.0993,2.45746 -0.0667,0.5291 -0.272,0.98245 -0.61159,1.35579 -0.34041,0.37358 -0.7651,0.60607 -1.2512,0.69906 -0.50229,0.093 -1.26239,0.18679 -2.29858,0.26536 v 1.33992 h 13.42192 v -1.33992 c -1.14949,-0.0802 -1.99028,-0.17156 -2.52452,-0.26536 -0.53399,-0.093 -0.97261,-0.32548 -1.34498,-0.69906 -0.37213,-0.37358 -0.58072,-0.82693 -0.66165,-1.35579 -0.0834,-0.52911 -0.11598,-1.35299 -0.11598,-2.45746 v -8.71212 c 0.46975,-0.0641 0.89026,-0.008 1.27882,0.17476 0.38882,0.18679 0.86056,0.59084 1.41107,1.22873 4.5657,5.10234 8.61401,9.58339 12.15971,13.42574 h 8.06416 v -1.3558 c -1.19806,-0.14029 -2.18836,-0.4329 -2.96548,-0.85274 -0.77679,-0.42008 -1.77952,-1.27715 -3.02614,-2.55269 -4.29044,-4.3713 -8.21093,-8.64767 -11.72425,-12.81671 4.71138,-4.38684 7.59643,-7.03173 8.66499,-7.94957 1.55433,-1.27554 2.83265,-2.11682 3.83647,-2.53682 1.02,-0.40485 2.45986,-0.70307 4.338,-0.87391 v -1.3982 z m -49.92831,0.0321 v 1.39812 c 1.08475,0.0641 1.86204,0.13949 2.33154,0.21726 0.46974,0.0802 0.87299,0.29902 1.22917,0.64053 0.35627,0.34232 0.56904,0.7632 0.63412,1.27635 0.0667,0.51307 0.0934,1.30433 0.0934,2.36214 v 18.49945 c 0,1.3845 -0.0926,2.36342 -0.30287,2.92347 -0.21026,0.56037 -0.60157,0.94766 -1.16852,1.18103 -0.56653,0.23329 -1.56868,0.38881 -3.00953,0.49784 v 1.33992 h 13.45488 v -1.33992 c -1.44086,-0.10903 -2.4481,-0.27978 -2.99852,-0.49784 -0.55068,-0.21805 -0.93607,-0.6213 -1.1465,-1.18103 -0.21026,-0.5756 -0.30871,-1.53897 -0.30871,-2.92347 v -7.28225 h 1.38904 c 1.21424,0 2.14013,0.15392 2.72293,0.43451 0.58322,0.27978 1.11796,0.77762 1.58745,1.47764 0.21026,0.34232 0.90687,1.41624 2.07255,3.25184 1.16569,1.82004 2.07022,3.19139 2.73403,4.07804 1.1495,1.52455 2.31343,2.59751 3.52767,3.20422 1.19814,0.60686 2.82106,0.96088 4.82861,1.06983 0.59907,0.0641 1.18103,0.0954 1.76383,0.0954 l 0.22611,-1.30817 c -1.27899,-0.29582 -2.44742,-1.00803 -3.48361,-2.08139 -1.03619,-1.02671 -2.37751,-2.65916 -4.01277,-4.91483 -2.03993,-2.89341 -3.49713,-5.13441 -4.38765,-6.73672 4.19333,-1.67999 6.28381,-4.32432 6.28381,-7.91775 0,-2.76898 -1.10502,-4.81069 -3.29071,-6.13297 -1.70001,-1.08892 -4.38347,-1.63117 -8.05866,-1.63117 z m 11.95011,1.59942 c 2.04001,0 3.73835,0.56438 5.08217,1.68416 1.34382,1.12002 2.0229,2.84619 2.0229,5.17962 0,2.50452 -0.89209,4.41876 -2.65676,5.74104 -1.16577,0.88673 -2.97883,1.33463 -5.4074,1.33463 h -2.21581 -0.0167 v -11.47678 c 0,-1.05781 0.17855,-1.72721 0.53483,-2.00724 0.42135,-0.29581 1.31303,-0.45535 2.65676,-0.45535 z m -32.52674,4.09392 h 0.0943 l 4.35452,11.60384 H -382.09 c 2.4123,-6.09794 3.96663,-9.97043 4.64663,-11.60384 z m 100.45761,0 h 0.0993 l 4.35452,11.60384 h -9.10044 c 2.41238,-6.09794 3.96671,-9.97043 4.64671,-11.60384 z m -268.75781,8.94517 v 3.32599 h 89.43347 v -3.32599 z m 336.07684,0 v 3.32599 h 89.43889 v -3.32599 z"/></g>
+  </defs>
+</svg>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Markaz Umaza, home">
+      <svg class="mu light" viewBox="0 0 443.2 280" aria-hidden="true"><use href="#mu-logo"/></svg>
+      <span class="brand-text"><small>MARKAZ</small><span>UMAZA</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#private">Private lessons</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn btn-gold nav-cta" href="#contact">Register now</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+    </button>
+  </div>
+</nav>
+<div class="mobile-panel" id="mobilePanel">
+  <a href="#courses">Courses</a>
+  <a href="#private">Private lessons</a>
+  <a href="#how">How it works</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+  <a class="btn btn-gold" href="#contact">Register now</a>
+</div>
+
+<!-- ================= HERO (parallax) =================
+  Each .layer is one depth plane. data-depth = how fast it drifts on scroll
+  (1 = pinned, 0 = moves with the page). data-mouse = pixels it shifts with the cursor.
+  To swap in your photography, replace a layer's <svg> with
+  <img src="hero-far.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:bottom">
+-->
+<header class="hero" id="top">
+  <div class="layer l-sky" data-depth="0.6" data-mouse="0"></div>
+
+  <div class="layer l-stars" data-depth="0.55" data-mouse="4">
+    <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="466" cy="78" r="2.2" opacity="0.38"/><circle cx="136" cy="303" r="1.8" opacity="0.48" class="twinkle" style="animation-delay:1.7s"/><circle cx="347" cy="287" r="0.8" opacity="0.85" class="twinkle" style="animation-delay:0.9s"/><circle cx="904" cy="493" r="1.8" opacity="0.70" class="twinkle" style="animation-delay:0.9s"/><circle cx="802" cy="69" r="1.4" opacity="0.44" class="twinkle" style="animation-delay:1.2s"/><circle cx="1175" cy="94" r="1.8" opacity="0.69" class="twinkle" style="animation-delay:0.4s"/><circle cx="1025" cy="293" r="1.8" opacity="0.47"/><circle cx="616" cy="163" r="1.8" opacity="0.90"/><circle cx="358" cy="93" r="1" opacity="0.40"/><circle cx="713" cy="179" r="1.4" opacity="0.52"/><circle cx="170" cy="217" r="1.2" opacity="0.44"/><circle cx="56" cy="347" r="1.8" opacity="0.69"/><circle cx="452" cy="362" r="1.8" opacity="0.65"/><circle cx="99" cy="49" r="1.2" opacity="0.63"/><circle cx="87" cy="365" r="2.2" opacity="0.70"/><circle cx="642" cy="373" r="2.2" opacity="0.56"/><circle cx="512" cy="318" r="1.4" opacity="0.39"/><circle cx="186" cy="129" r="1.4" opacity="0.90"/><circle cx="240" cy="209" r="1.2" opacity="0.88"/><circle cx="1244" cy="145" r="1.4" opacity="0.94"/><circle cx="548" cy="120" r="0.8" opacity="0.46" class="twinkle" style="animation-delay:0.9s"/><circle cx="698" cy="306" r="1.2" opacity="0.52" class="twinkle" style="animation-delay:2.1s"/><circle cx="878" cy="166" r="1" opacity="0.76"/><circle cx="889" cy="352" r="0.8" opacity="0.62"/><circle cx="1371" cy="354" r="1.8" opacity="0.59"/><circle cx="149" cy="330" r="0.8" opacity="0.46"/><circle cx="635" cy="57" r="1.8" opacity="0.38" class="twinkle" style="animation-delay:0.6s"/><circle cx="146" cy="189" r="0.8" opacity="0.39" class="twinkle" style="animation-delay:1.5s"/><circle cx="914" cy="497" r="1.8" opacity="0.57" class="twinkle" style="animation-delay:3.4s"/><circle cx="1430" cy="242" r="1.4" opacity="0.54" class="twinkle" style="animation-delay:3.0s"/><circle cx="1066" cy="249" r="2.2" opacity="0.45" class="twinkle" style="animation-delay:3.8s"/><circle cx="761" cy="76" r="1.8" opacity="0.90"/><circle cx="429" cy="334" r="0.8" opacity="0.77" class="twinkle" style="animation-delay:1.5s"/><circle cx="241" cy="401" r="1.8" opacity="0.67"/><circle cx="916" cy="319" r="1" opacity="0.83"/><circle cx="1065" cy="118" r="1.8" opacity="0.65"/><circle cx="1425" cy="411" r="1.4" opacity="0.51"/><circle cx="1377" cy="233" r="2.2" opacity="0.94"/><circle cx="525" cy="115" r="1" opacity="0.63"/><circle cx="695" cy="512" r="1.8" opacity="0.85"/><circle cx="940" cy="416" r="0.8" opacity="0.85" class="twinkle" style="animation-delay:1.6s"/><circle cx="1025" cy="104" r="1" opacity="0.61"/><circle cx="125" cy="492" r="2.2" opacity="0.59"/><circle cx="1363" cy="377" r="1" opacity="0.95" class="twinkle" style="animation-delay:2.4s"/><circle cx="670" cy="341" r="1.8" opacity="0.85"/><circle cx="946" cy="182" r="1.8" opacity="0.68" class="twinkle" style="animation-delay:3.2s"/><circle cx="1046" cy="53" r="2.2" opacity="0.91"/><circle cx="1255" cy="430" r="1" opacity="0.37" class="twinkle" style="animation-delay:2.0s"/><circle cx="1100" cy="170" r="1.8" opacity="0.60" class="twinkle" style="animation-delay:3.6s"/><circle cx="509" cy="238" r="1.8" opacity="0.84"/><circle cx="1191" cy="457" r="1" opacity="0.67"/><circle cx="27" cy="229" r="1" opacity="0.72"/><circle cx="216" cy="74" r="1.8" opacity="0.79"/><circle cx="469" cy="270" r="1.8" opacity="0.64"/><circle cx="1272" cy="30" r="1" opacity="0.52"/><circle cx="731" cy="292" r="0.8" opacity="0.62"/><circle cx="728" cy="266" r="2.2" opacity="0.52"/><circle cx="1163" cy="264" r="1" opacity="0.77"/><circle cx="1357" cy="135" r="1.8" opacity="0.89" class="twinkle" style="animation-delay:1.8s"/><circle cx="600" cy="204" r="1.2" opacity="0.39" class="twinkle" style="animation-delay:0.3s"/><circle cx="964" cy="408" r="1" opacity="0.91"/><circle cx="527" cy="132" r="1" opacity="0.93" class="twinkle" style="animation-delay:3.8s"/><circle cx="573" cy="253" r="2.2" opacity="0.85" class="twinkle" style="animation-delay:1.7s"/><circle cx="742" cy="176" r="1" opacity="0.56" class="twinkle" style="animation-delay:1.5s"/><circle cx="487" cy="239" r="2.2" opacity="0.36"/><circle cx="898" cy="266" r="0.8" opacity="0.42"/><circle cx="329" cy="456" r="0.8" opacity="0.51" class="twinkle" style="animation-delay:3.1s"/><circle cx="389" cy="67" r="1.4" opacity="0.86"/><circle cx="1362" cy="211" r="1.8" opacity="0.90"/><circle cx="1009" cy="47" r="0.8" opacity="0.83" class="twinkle" style="animation-delay:3.6s"/></svg>
+  </div>
+
+  <div class="layer l-moon" data-depth="0.5" data-mouse="8">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>
+        <mask id="crescent"><rect width="1440" height="900" fill="#fff"/><circle cx="1148" cy="176" r="46" fill="#000"/></mask>
+        <radialGradient id="moonGlow"><stop offset="0" stop-color="#f6f1e6" stop-opacity=".35"/><stop offset="1" stop-color="#f6f1e6" stop-opacity="0"/></radialGradient>
+      </defs>
+      <circle cx="1130" cy="190" r="150" fill="url(#moonGlow)"/>
+      <circle cx="1130" cy="190" r="52" fill="#f3e8c4" mask="url(#crescent)"/>
+    </svg>
+  </div>
+
+  <div class="layer l-far" data-depth="0.38" data-mouse="-10">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g fill="#2c6d73" opacity=".75"><rect x="0" y="815" width="1440" height="85"/><rect x="870" y="700" width="330" height="200"/><path d="M930.0 700C930.0 607.0 993.0 583.0 1035 550C1077.0 583.0 1140.0 607.0 1140.0 700Z"/><rect x="1033.5" y="528" width="3" height="24"/><circle cx="1035" cy="524" r="4"/><rect x="950" y="690" width="170" height="14"/><path d="M862.0 724C862.0 684.32 887.8 674.08 905 660C922.2 674.08 948.0 684.32 948.0 724Z"/><rect x="903.5" y="638" width="3" height="24"/><circle cx="905" cy="634" r="4"/><path d="M1122.0 724C1122.0 684.32 1147.8 674.08 1165 660C1182.2 674.08 1208.0 684.32 1208.0 724Z"/><rect x="1163.5" y="638" width="3" height="24"/><circle cx="1165" cy="634" r="4"/><rect x="860" y="724" width="90" height="176"/><rect x="1120" y="724" width="90" height="176"/><rect x="819.0" y="500" width="22" height="400"/><rect x="813.0" y="550" width="34" height="8"/><rect x="814.0" y="640" width="32" height="7"/><rect x="823.0" y="460" width="14" height="44"/><rect x="816.0" y="496" width="28" height="6"/><path d="M820.0 464L830 406L840.0 464Z"/><rect x="829" y="390" width="2" height="18"/><circle cx="830" cy="386" r="3"/><rect x="1229.0" y="500" width="22" height="400"/><rect x="1223.0" y="550" width="34" height="8"/><rect x="1224.0" y="640" width="32" height="7"/><rect x="1233.0" y="460" width="14" height="44"/><rect x="1226.0" y="496" width="28" height="6"/><path d="M1230.0 464L1240 406L1250.0 464Z"/><rect x="1239" y="390" width="2" height="18"/><circle cx="1240" cy="386" r="3"/><rect x="170" y="760" width="260" height="140"/><path d="M230.0 760C230.0 699.24 272.0 683.56 300 662C328.0 683.56 370.0 699.24 370.0 760Z"/><rect x="298.5" y="640" width="3" height="24"/><circle cx="300" cy="636" r="4"/><path d="M175.0 770C175.0 742.72 193.0 735.68 205 726C217.0 735.68 235.0 742.72 235.0 770Z"/><rect x="203.5" y="704" width="3" height="24"/><circle cx="205" cy="700" r="4"/><path d="M365.0 770C365.0 742.72 383.0 735.68 395 726C407.0 735.68 425.0 742.72 425.0 770Z"/><rect x="393.5" y="704" width="3" height="24"/><circle cx="395" cy="700" r="4"/><rect x="131.0" y="610" width="18" height="290"/><rect x="125.0" y="660" width="30" height="8"/><rect x="126.0" y="750" width="28" height="7"/><rect x="135.0" y="570" width="10" height="44"/><rect x="128.0" y="606" width="24" height="6"/><path d="M132.0 574L140 516L148.0 574Z"/><rect x="139" y="500" width="2" height="18"/><circle cx="140" cy="496" r="3"/><rect x="452.0" y="670" width="16" height="230"/><rect x="446.0" y="720" width="28" height="8"/><rect x="447.0" y="810" width="26" height="7"/><rect x="456.0" y="630" width="8" height="44"/><rect x="449.0" y="666" width="22" height="6"/><path d="M453.0 634L460 576L467.0 634Z"/><rect x="459" y="560" width="2" height="18"/><circle cx="460" cy="556" r="3"/><rect x="560" y="790" width="200" height="110"/><path d="M615.0 790C615.0 752.8 642.0 743.2 660 730C678.0 743.2 705.0 752.8 705.0 790Z"/><rect x="658.5" y="708" width="3" height="24"/><circle cx="660" cy="704" r="4"/></g></svg>
+  </div>
+
+  <div class="layer l-mid" data-depth="0.22" data-mouse="-20">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g fill="#123f46"><rect x="120" y="770" width="420" height="130"/><path d="M210.0 770C210.0 661.5 282.0 633.5 330 595C378.0 633.5 450.0 661.5 450.0 770Z"/><rect x="328.5" y="573" width="3" height="24"/><circle cx="330" cy="569" r="4"/><rect x="230" y="760" width="200" height="14"/><path d="M135.0 790C135.0 754.04 159.0 744.76 175 732C191.0 744.76 215.0 754.04 215.0 790Z"/><rect x="173.5" y="710" width="3" height="24"/><circle cx="175" cy="706" r="4"/><path d="M445.0 790C445.0 754.04 469.0 744.76 485 732C501.0 744.76 525.0 754.04 525.0 790Z"/><rect x="483.5" y="710" width="3" height="24"/><circle cx="485" cy="706" r="4"/><rect x="78.0" y="540" width="24" height="360"/><rect x="72.0" y="590" width="36" height="8"/><rect x="73.0" y="680" width="34" height="7"/><rect x="82.0" y="500" width="16" height="44"/><rect x="75.0" y="536" width="30" height="6"/><path d="M79.0 504L90 446L101.0 504Z"/><rect x="89" y="430" width="2" height="18"/><circle cx="90" cy="426" r="3"/><rect x="563.0" y="540" width="24" height="360"/><rect x="557.0" y="590" width="36" height="8"/><rect x="558.0" y="680" width="34" height="7"/><rect x="567.0" y="500" width="16" height="44"/><rect x="560.0" y="536" width="30" height="6"/><path d="M564.0 504L575 446L586.0 504Z"/><rect x="574" y="430" width="2" height="18"/><circle cx="575" cy="426" r="3"/><path d="M714 900C716 800.0 742 730.0 743 700L749 700C748 730.0 724 800.0 726 900Z"/><path d="M746 700Q718 678 684 728" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M746 700Q774 678 808 728" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M746 700Q712 706 698 752" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M746 700Q780 706 798 748" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M746 700Q726 672 718 668" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M746 700Q764 670 778 672" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M746 700Q739 720 746 758" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M1384 900C1386 785.0 1360 704.5 1361 670L1367 670C1366 704.5 1394 785.0 1396 900Z"/><path d="M1364 670Q1336 648 1302 698" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M1364 670Q1392 648 1426 698" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M1364 670Q1330 676 1316 722" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M1364 670Q1398 676 1416 718" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M1364 670Q1344 642 1336 638" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M1364 670Q1382 640 1396 642" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M1364 670Q1357 690 1364 728" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M1294 900C1296 815.0 1322 755.5 1323 730L1329 730C1328 755.5 1304 815.0 1306 900Z"/><path d="M1326 730Q1298 708 1264 758" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M1326 730Q1354 708 1388 758" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M1326 730Q1292 736 1278 782" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M1326 730Q1360 736 1378 778" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M1326 730Q1306 702 1298 698" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M1326 730Q1344 700 1358 702" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><path d="M1326 730Q1319 750 1326 788" fill="none" stroke="#123f46" stroke-width="6" stroke-linecap="round"/><rect x="1180" y="800" width="160" height="100"/><path d="M1205.0 800C1205.0 750.4 1238.0 737.6 1260 720C1282.0 737.6 1315.0 750.4 1315.0 800Z"/><rect x="1258.5" y="698" width="3" height="24"/><circle cx="1260" cy="694" r="4"/><rect x="0" y="850" width="1440" height="50"/></g></svg>
+  </div>
+
+  <div class="layer l-near" data-depth="0.1" data-mouse="-32">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><mask id="arcade"><rect width="1440" height="900" fill="#fff"/><path d="M-30 900V838C-30 806 3.0 790 25.0 772C47.0 790 80 806 80 838V900Z" fill="#000"/><path d="M110 900V838C110 806 143.0 790 165.0 772C187.0 790 220 806 220 838V900Z" fill="#000"/><path d="M250 900V838C250 806 283.0 790 305.0 772C327.0 790 360 806 360 838V900Z" fill="#000"/><path d="M390 900V838C390 806 423.0 790 445.0 772C467.0 790 500 806 500 838V900Z" fill="#000"/><path d="M530 900V838C530 806 563.0 790 585.0 772C607.0 790 640 806 640 838V900Z" fill="#000"/><path d="M670 900V838C670 806 703.0 790 725.0 772C747.0 790 780 806 780 838V900Z" fill="#000"/><path d="M810 900V838C810 806 843.0 790 865.0 772C887.0 790 920 806 920 838V900Z" fill="#000"/><path d="M950 900V838C950 806 983.0 790 1005.0 772C1027.0 790 1060 806 1060 838V900Z" fill="#000"/><path d="M1090 900V838C1090 806 1123.0 790 1145.0 772C1167.0 790 1200 806 1200 838V900Z" fill="#000"/><path d="M1230 900V838C1230 806 1263.0 790 1285.0 772C1307.0 790 1340 806 1340 838V900Z" fill="#000"/><path d="M1370 900V838C1370 806 1403.0 790 1425.0 772C1447.0 790 1480 806 1480 838V900Z" fill="#000"/></mask></defs><g fill="#0a252a"><rect x="0" y="742" width="1440" height="158" mask="url(#arcade)"/><rect x="0" y="732" width="1440" height="14"/><path d="M0 732l9-14 9 14z"/><path d="M26 732l9-14 9 14z"/><path d="M52 732l9-14 9 14z"/><path d="M78 732l9-14 9 14z"/><path d="M104 732l9-14 9 14z"/><path d="M130 732l9-14 9 14z"/><path d="M156 732l9-14 9 14z"/><path d="M182 732l9-14 9 14z"/><path d="M208 732l9-14 9 14z"/><path d="M234 732l9-14 9 14z"/><path d="M260 732l9-14 9 14z"/><path d="M286 732l9-14 9 14z"/><path d="M312 732l9-14 9 14z"/><path d="M338 732l9-14 9 14z"/><path d="M364 732l9-14 9 14z"/><path d="M390 732l9-14 9 14z"/><path d="M416 732l9-14 9 14z"/><path d="M442 732l9-14 9 14z"/><path d="M468 732l9-14 9 14z"/><path d="M494 732l9-14 9 14z"/><path d="M520 732l9-14 9 14z"/><path d="M546 732l9-14 9 14z"/><path d="M572 732l9-14 9 14z"/><path d="M598 732l9-14 9 14z"/><path d="M624 732l9-14 9 14z"/><path d="M650 732l9-14 9 14z"/><path d="M676 732l9-14 9 14z"/><path d="M702 732l9-14 9 14z"/><path d="M728 732l9-14 9 14z"/><path d="M754 732l9-14 9 14z"/><path d="M780 732l9-14 9 14z"/><path d="M806 732l9-14 9 14z"/><path d="M832 732l9-14 9 14z"/><path d="M858 732l9-14 9 14z"/><path d="M884 732l9-14 9 14z"/><path d="M910 732l9-14 9 14z"/><path d="M936 732l9-14 9 14z"/><path d="M962 732l9-14 9 14z"/><path d="M988 732l9-14 9 14z"/><path d="M1014 732l9-14 9 14z"/><path d="M1040 732l9-14 9 14z"/><path d="M1066 732l9-14 9 14z"/><path d="M1092 732l9-14 9 14z"/><path d="M1118 732l9-14 9 14z"/><path d="M1144 732l9-14 9 14z"/><path d="M1170 732l9-14 9 14z"/><path d="M1196 732l9-14 9 14z"/><path d="M1222 732l9-14 9 14z"/><path d="M1248 732l9-14 9 14z"/><path d="M1274 732l9-14 9 14z"/><path d="M1300 732l9-14 9 14z"/><path d="M1326 732l9-14 9 14z"/><path d="M1352 732l9-14 9 14z"/><path d="M1378 732l9-14 9 14z"/><path d="M1404 732l9-14 9 14z"/><path d="M1430 732l9-14 9 14z"/></g><rect x="0" y="752" width="1440" height="1.5" fill="#d4bf6a" opacity=".35"/></svg>
+  </div>
+
+  <div class="hero-content" id="heroContent">
+    <svg class="hero-emblem mu light" viewBox="0 0 443.2 280" role="img" aria-label="Markaz Umaza calligraphy"><use href="#mu-logo"/></svg>
+    <p class="hero-verse ar" lang="ar">اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ</p>
+    <h1>Learn the Qur'an.<br><em>Understand</em> its language.</h1>
+    <p class="hero-sub">Awakening curiosity and understanding through the Arabic language: live online classes in Qur'an recitation, Tajwid, Hifdh, Arabic and Islamic studies for children and adults.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-gold" href="#courses">Explore courses
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn-ghost" href="#private">Book a private lesson</a>
+    </div>
+    <ul class="hero-trust">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Students across Canada, the US &amp; beyond</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/></svg>Children &amp; adults</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></svg>Certificate of completion</li>
+    </ul>
+  </div>
+
+  <div class="layer l-front" data-depth="0" data-mouse="0">
+    <svg viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 180V132C330 132 560 124 720 62C880 124 1110 132 1440 132V180Z" fill="#fbf8f1"/>
+      <path d="M0 132C330 132 560 124 720 62C880 124 1110 132 1440 132" fill="none" stroke="#d4bf6a" stroke-width="1.5" vector-effect="non-scaling-stroke" opacity=".9"/>
+    </svg>
+  </div>
+  <a class="scroll-cue" href="#about" aria-label="Scroll to learn more">Scroll<span></span></a>
+</header>
+
+<!-- ================= INTRO ================= -->
+<section class="intro" id="about">
+  <div class="wrap intro-grid">
+    <div class="reveal">
+      <span class="eyebrow">Welcome to Markaz Umaza</span>
+      <h2>A home for learning the Book of Allah and its language</h2>
+      <p class="intro-lead">We teach Arabic, Qur'an recitation with Tajwid, Hifdh and basic Islamic studies through structured online classes, for a growing community of students in Canada, the US and around the world.</p>
+      <div class="intro-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg>
+        <p>Our students have gone on to win <b>local Qur'an competitions</b>, a reflection of steady, caring teaching.</p>
+      </div>
+    </div>
+    <div class="pillars">
+      <article class="pillar reveal d1">
+        <div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
+        <h3>Dedicated instructors</h3>
+        <p>Teachers of Arabic, Tajwid, Hifdh and Islamic knowledge who follow each student closely.</p>
+      </article>
+      <article class="pillar reveal d2">
+        <div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2zM4 17h14M8 7h6M8 11h4"/></svg></div>
+        <h3>Structured lessons</h3>
+        <p>Clear levels and a planned curriculum, so every class builds on the last.</p>
+      </article>
+      <article class="pillar reveal d1">
+        <div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Learn anytime</h3>
+        <p>24/7 access to course materials, so you can review between live classes.</p>
+      </article>
+      <article class="pillar reveal d2">
+        <div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></svg></div>
+        <h3>Certificate</h3>
+        <p>Finish your course and receive a certificate of completion.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COURSES ================= -->
+<section class="section courses" id="courses">
+  <div class="wrap">
+    <div class="courses-top">
+      <div class="section-head reveal">
+        <span class="eyebrow">Our courses</span>
+        <h2>Find your path</h2>
+        <p>General classes to build strong foundations, specialized programs to go deeper, and private lessons shaped entirely around you.</p>
+      </div>
+      <div class="tabs reveal d1" role="tablist" aria-label="Filter courses">
+        <button class="tab" role="tab" aria-selected="true" data-filter="all">All <span class="count" data-count="all"></span></button>
+        <button class="tab" role="tab" aria-selected="false" data-filter="general">General <span class="count" data-count="general"></span></button>
+        <button class="tab" role="tab" aria-selected="false" data-filter="specialized">Specialized <span class="count" data-count="specialized"></span></button>
+        <button class="tab" role="tab" aria-selected="false" data-filter="private">Private <span class="count" data-count="private"></span></button>
+      </div>
+    </div>
+
+    <div class="course-grid" id="courseGrid">
+      <!-- GENERAL -->
+      <article class="card reveal" data-cat="general">
+        <div class="card-art"><span class="badge">General</span><span class="ar" lang="ar">القاعدة النورانية</span></div>
+        <div class="card-body">
+          <h3>Qur'an Reading Foundations</h3>
+          <p>Master the Arabic letters, their sounds and joining rules with the Qaida, until you can read the Mushaf on your own.</p>
+          <ul class="meta">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/></svg>Children &amp; adult beginners</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8"/></svg>Live online · small group</li>
+          </ul>
+          <div class="card-foot"><span class="price"><b>[Price]</b> / month</span><a class="card-link" href="#contact" data-course="Qur'an Reading Foundations">Enroll<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="card reveal d1" data-cat="general">
+        <div class="card-art"><span class="badge">General</span><span class="ar" lang="ar">اللغة العربية</span></div>
+        <div class="card-body">
+          <h3>Arabic Language</h3>
+          <p>Read, write and speak Arabic step by step, from the alphabet to confident conversation and reading real texts.</p>
+          <ul class="meta">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Beginner to advanced levels</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8"/></svg>Live online · small group</li>
+          </ul>
+          <div class="card-foot"><span class="price"><b>[Price]</b> / month</span><a class="card-link" href="#contact" data-course="Arabic Language">Enroll<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="card reveal d2" data-cat="general">
+        <div class="card-art"><span class="badge">General</span><span class="ar" lang="ar">العلوم الإسلامية</span></div>
+        <div class="card-body">
+          <h3>Basic Islamic Studies</h3>
+          <p>The foundations every Muslim should know: belief, the fiqh of worship, the Seerah and good character.</p>
+          <ul class="meta">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/></svg>Children &amp; adults</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8"/></svg>Live online · small group</li>
+          </ul>
+          <div class="card-foot"><span class="price"><b>[Price]</b> / month</span><a class="card-link" href="#contact" data-course="Basic Islamic Studies">Enroll<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </article>
+
+      <!-- SPECIALIZED -->
+      <article class="card reveal" data-cat="specialized">
+        <div class="card-art"><span class="badge">Specialized</span><span class="ar" lang="ar">التجويد</span></div>
+        <div class="card-body">
+          <h3>Tajwid</h3>
+          <p>Recite as it was revealed: articulation points, letter qualities and the rules of recitation, with live correction.</p>
+          <ul class="meta">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Can already read the Mushaf</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8"/></svg>Group or private</li>
+          </ul>
+          <div class="card-foot"><span class="price"><b>[Price]</b> / month</span><a class="card-link" href="#contact" data-course="Tajwid">Enroll<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="card reveal d1" data-cat="specialized">
+        <div class="card-art"><span class="badge">Specialized</span><span class="ar" lang="ar">حفظ القرآن</span></div>
+        <div class="card-body">
+          <h3>Hifdh Program</h3>
+          <p>Structured memorization with a personal plan, regular revision and close follow-up from your teacher.</p>
+          <ul class="meta">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/></svg>Children &amp; adults</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8"/></svg>Group or private</li>
+          </ul>
+          <div class="card-foot"><span class="price"><b>[Price]</b> / month</span><a class="card-link" href="#contact" data-course="Hifdh Program">Enroll<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="card reveal d2" data-cat="specialized">
+        <div class="card-art"><span class="badge">Specialized</span><span class="ar" lang="ar">عربية القرآن</span></div>
+        <div class="card-body">
+          <h3>Qur'anic Arabic</h3>
+          <p>Understand what you recite: the vocabulary and grammar of the Qur'an, taught directly from its verses.</p>
+          <ul class="meta">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Can read Arabic script</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8"/></svg>Live online · small group</li>
+          </ul>
+          <div class="card-foot"><span class="price"><b>[Price]</b> / month</span><a class="card-link" href="#contact" data-course="Qur'anic Arabic">Enroll<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </article>
+
+      <!-- PRIVATE -->
+      <article class="card reveal" data-cat="private">
+        <div class="card-art"><span class="badge">Private</span><span class="ar" lang="ar">درس خاص</span></div>
+        <div class="card-body">
+          <h3>One-to-One Lessons</h3>
+          <p>Your own teacher, your own pace. Choose any subject (Qur'an, Tajwid, Hifdh, Arabic or Islamic studies) at times that suit you.</p>
+          <ul class="meta">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Flexible schedule</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Any level</li>
+          </ul>
+          <div class="card-foot"><span class="price"><b>[Price]</b> / hour</span><a class="card-link" href="#contact" data-course="One-to-One Lessons">Book<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </article>
+
+      <article class="card reveal d1" data-cat="private">
+        <div class="card-art"><span class="badge">Private</span><span class="ar" lang="ar">دروس عائلية</span></div>
+        <div class="card-body">
+          <h3>Family Lessons</h3>
+          <p>Siblings, or parents and children, learning together in one private session with a shared plan.</p>
+          <ul class="meta">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/></svg>2 or more learners</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Flexible schedule</li>
+          </ul>
+          <div class="card-foot"><span class="price"><b>[Price]</b> / hour</span><a class="card-link" href="#contact" data-course="Family Lessons">Book<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRIVATE ================= -->
+<section class="section private" id="private">
+  <div class="wrap private-grid">
+    <div class="reveal">
+      <span class="eyebrow">One-to-one</span>
+      <h2>Private lessons, shaped around you</h2>
+      <p class="private-lead">Some learners need their own pace, their own goals and their own hours. Private lessons give you a dedicated teacher and a plan written just for you.</p>
+      <ul class="checks">
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span><div><b>Your schedule.</b> <span>Lessons at times that work for you, across time zones.</span></div></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span><div><b>Your goals.</b> <span>Fix your recitation, complete a juz', prepare for a competition or start Arabic from zero.</span></div></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span><div><b>Any subject.</b> <span>Qur'an reading, Tajwid, Hifdh, Arabic or Islamic studies.</span></div></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span><div><b>Every age.</b> <span>Children, teens and adults.</span></div></li>
+      </ul>
+      <div class="hero-ctas" style="justify-content:flex-start">
+        <a class="btn btn-gold" href="#contact" data-course="One-to-One Lessons">Book a private lesson</a>
+        <a class="btn btn-ghost" href="https://wa.me/12894569089" target="_blank" rel="noopener">Ask on WhatsApp</a>
+      </div>
+    </div>
+    <div class="arch-wrap reveal d2">
+      <div class="arch-outline" aria-hidden="true"></div>
+      <div class="arch">
+        <!-- Replace .art with a photo: <img class="art" src="private.jpg" alt="..." style="width:100%;height:124%;object-fit:cover"> -->
+        <div class="art" data-parallax="0.12"></div>
+        <div class="arch-emblem"><svg class="mu light" viewBox="0 0 443.2 280" aria-hidden="true"><use href="#mu-logo"/></svg></div>
+      </div>
+      <div class="arch-tag">
+        <span class="ar" lang="ar">١:١</span>
+        <div><b>Dedicated teacher</b><small>A plan written for you</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>Four steps to your first class</h2>
+      <p>Getting started is simple, wherever you are in the world.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="step-num" lang="ar">١</div><h3>Reach out</h3><p>Register online or message us on WhatsApp or Telegram.</p></div>
+      <div class="step reveal d1"><div class="step-num" lang="ar">٢</div><h3>Placement</h3><p>We get to know your level, your goals and your availability.</p></div>
+      <div class="step reveal d2"><div class="step-num" lang="ar">٣</div><h3>Meet your teacher</h3><p>Join the right group class, or start one-to-one lessons.</p></div>
+      <div class="step reveal d3"><div class="step-num" lang="ar">٤</div><h3>Learn &amp; grow</h3><p>Live classes, materials available 24/7, and a certificate when you finish.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HADITH ================= -->
+<section class="hadith" aria-label="Hadith">
+  <div class="hadith-bg" data-parallax="0.18" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hadith-card reveal">
+      <div class="ornament" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l2.6 5.2L20 4l-2.2 5.4L23 12l-5.2 2.6L20 20l-5.4-2.2L12 23l-2.6-5.2L4 20l2.2-5.4L1 12l5.2-2.6L4 4l5.4 2.2z"/></svg></div>
+      <p class="ar" lang="ar">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</p>
+      <blockquote>“The best of you are those who learn the Qur'an and teach it.”</blockquote>
+      <cite>Sahih al-Bukhari · 5027</cite>
+      <a class="btn btn-teal" href="#courses">Start learning</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-card reveal">
+      <div class="contact-left">
+        <span class="eyebrow">Register</span>
+        <h2>Begin your journey with us</h2>
+        <p>Tell us what you'd like to learn and we'll help you choose the right class or teacher.</p>
+        <div class="channels">
+          <a class="channel" href="https://wa.me/12894569089" target="_blank" rel="noopener">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5 5 16a8.5 8.5 0 1 1 3 3z"/><path d="M9 9.5c.5 2.5 3 5 5.5 5.5l1.2-1.4-2-1-1 .8c-1-.5-1.6-1.1-2.1-2.1l.8-1-1-2z"/></svg></span>
+            <span><small>WhatsApp</small><b>+1 (289) 456-9089</b></span></a>
+          <a class="channel" href="https://t.me/markazumaza" target="_blank" rel="noopener">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 4.5 2.5 11.8l6 2.2 2.2 6.5 3.4-4.4 5 3.6z"/><path d="m8.5 14 9-6.5"/></svg></span>
+            <span><small>Telegram</small><b>@markazumaza</b></span></a>
+          <a class="channel" href="tel:+12894569089">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></span>
+            <span><small>Call us</small><b>+1 (289) 456-9089</b></span></a>
+        </div>
+      </div>
+
+      <form class="form" id="enquiry" novalidate>
+        <h3>Send an enquiry</h3>
+        <p>Submitting opens WhatsApp with your message ready to send.</p>
+        <div class="row2">
+          <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required placeholder="Full name"></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+        </div>
+        <div class="field">
+          <span id="who-label" style="font-size:13.5px;font-weight:700;color:var(--teal)">Who is learning?</span>
+          <div class="seg" role="radiogroup" aria-labelledby="who-label">
+            <input type="radio" name="who" id="w1" value="A child" checked><label for="w1">A child</label>
+            <input type="radio" name="who" id="w2" value="An adult"><label for="w2">An adult</label>
+            <input type="radio" name="who" id="w3" value="Family"><label for="w3">Family</label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-course">Course</label>
+          <select id="f-course" name="course">
+            <option>Not sure yet, please advise</option>
+            <option>Qur'an Reading Foundations</option>
+            <option>Arabic Language</option>
+            <option>Basic Islamic Studies</option>
+            <option>Tajwid</option>
+            <option>Hifdh Program</option>
+            <option>Qur'anic Arabic</option>
+            <option>One-to-One Lessons</option>
+            <option>Family Lessons</option>
+          </select>
+        </div>
+        <div class="field"><label for="f-msg">Message (optional)</label><textarea id="f-msg" name="message" placeholder="Age, current level, preferred days and times…"></textarea></div>
+        <button class="btn btn-teal" type="submit">Send via WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <p class="form-note" id="formNote" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <svg class="mu light" viewBox="0 0 443.2 412.64" role="img" aria-label="Markaz Umaza"><use href="#mu-logo"/></svg>
+        <p>Awakening curiosity and understanding through the Arabic language.</p>
+        <div class="socials">
+          <a href="https://instagram.com/markazumaza" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="https://youtube.com/@markazumaza" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3z" fill="currentColor"/></svg></a>
+          <a href="https://t.me/markazumaza" target="_blank" rel="noopener" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21.5 4.5 2.5 11.8l6 2.2 2.2 6.5 3.4-4.4 5 3.6z"/></svg></a>
+          <a href="https://wa.me/12894569089" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3.5 20.5 5 16a8.5 8.5 0 1 1 3 3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Courses</h4>
+        <ul>
+          <li><a href="#courses" data-filter-link="general">General courses</a></li>
+          <li><a href="#courses" data-filter-link="specialized">Specialized programs</a></li>
+          <li><a href="#courses" data-filter-link="private">Private lessons</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Institute</h4>
+        <ul>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#contact">Register</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+12894569089">+1 (289) 456-9089</a></li>
+          <li><a href="https://wa.me/12894569089" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://t.me/markazumaza" target="_blank" rel="noopener">Telegram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Markaz Umaza. All rights reserved.</span>
+      <span class="ar" lang="ar">رَبِّ زِدْنِي عِلْمًا</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('year').textContent=new Date().getFullYear();
+
+  /* ---------- nav ---------- */
+  var nav=document.getElementById('nav');
+  var menuBtn=document.getElementById('menuBtn'), panel=document.getElementById('mobilePanel');
+  function setMenu(open){
+    panel.classList.toggle('open',open); menuBtn.setAttribute('aria-expanded',open);
+    menuBtn.setAttribute('aria-label',open?'Close menu':'Open menu');
+    document.body.style.overflow=open?'hidden':'';
+    nav.classList.toggle('scrolled', open || window.scrollY>40);
+  }
+  menuBtn.addEventListener('click',function(){setMenu(!panel.classList.contains('open'))});
+  panel.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+
+  /* ---------- parallax ---------- */
+  var hero=document.querySelector('.hero');
+  var layers=[].slice.call(hero.querySelectorAll('[data-depth]'));
+  var content=document.getElementById('heroContent');
+  var extra=[].slice.call(document.querySelectorAll('[data-parallax]'));
+  var mx=0,my=0,tx=0,ty=0;
+  if(!reduce){
+    hero.addEventListener('pointermove',function(e){
+      var r=hero.getBoundingClientRect();
+      tx=(e.clientX-r.left)/r.width*2-1; ty=(e.clientY-r.top)/r.height*2-1;
+    });
+    hero.addEventListener('pointerleave',function(){tx=0;ty=0});
+  }
+  function frame(){
+    var y=window.scrollY, h=hero.offsetHeight, vh=window.innerHeight;
+    if(!panel.classList.contains('open')) nav.classList.toggle('scrolled', y>40);
+    if(!reduce){
+      mx+=(tx-mx)*0.06; my+=(ty-my)*0.06;
+      if(y<h+50){
+        for(var i=0;i<layers.length;i++){
+          var l=layers[i], d=+l.dataset.depth, m=+l.dataset.mouse;
+          l.style.transform='translate3d('+(mx*m).toFixed(2)+'px,'+(y*d+my*m*0.4).toFixed(2)+'px,0)';
+        }
+        content.style.transform='translate3d(0,'+(y*0.42).toFixed(1)+'px,0)';
+        content.style.opacity=Math.max(0,1-y/(h*0.62)).toFixed(3);
+      }
+      for(var j=0;j<extra.length;j++){
+        var el=extra[j], rr=el.parentElement.getBoundingClientRect();
+        if(rr.bottom>-200 && rr.top<vh+200){
+          var off=(rr.top+rr.height/2-vh/2)*(+el.dataset.parallax);
+          el.style.transform='translate3d(0,'+off.toFixed(1)+'px,0)';
+        }
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  /* ---------- reveal ---------- */
+  if('IntersectionObserver' in window && !reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  } else document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in')});
+
+  /* ---------- course filter ---------- */
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  var cards=[].slice.call(document.querySelectorAll('.card'));
+  ['all','general','specialized','private'].forEach(function(k){
+    var n=k==='all'?cards.length:cards.filter(function(c){return c.dataset.cat===k}).length;
+    document.querySelector('[data-count="'+k+'"]').textContent=n;
+  });
+  function filter(k){
+    tabs.forEach(function(t){t.setAttribute('aria-selected',t.dataset.filter===k)});
+    cards.forEach(function(c){
+      var show=k==='all'||c.dataset.cat===k;
+      c.classList.toggle('hide',!show); c.classList.remove('pop');
+      if(show){c.classList.add('in'); void c.offsetWidth; c.classList.add('pop');}
+    });
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){filter(t.dataset.filter)})});
+  document.querySelectorAll('[data-filter-link]').forEach(function(a){a.addEventListener('click',function(){filter(a.dataset.filterLink)})});
+
+  /* ---------- enroll buttons prefill the form ---------- */
+  var sel=document.getElementById('f-course');
+  document.querySelectorAll('[data-course]').forEach(function(a){
+    a.addEventListener('click',function(){sel.value=a.dataset.course;setTimeout(function(){document.getElementById('f-name').focus({preventScroll:true})},700)});
+  });
+
+  /* ---------- enquiry -> WhatsApp ---------- */
+  var form=document.getElementById('enquiry'), note=document.getElementById('formNote');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=new FormData(form), name=(f.get('name')||'').trim();
+    if(!name){note.textContent='Please add your name so we know who to reply to.';document.getElementById('f-name').focus();return;}
+    var lines=['Assalamu alaykum, I would like to register with Markaz Umaza.','Name: '+name];
+    if(f.get('email')) lines.push('Email: '+f.get('email'));
+    lines.push('Learner: '+f.get('who'),'Course: '+f.get('course'));
+    if((f.get('message')||'').trim()) lines.push('Message: '+f.get('message').trim());
+    var url='https://wa.me/12894569089?text='+encodeURIComponent(lines.join('\n'));
+    var w=null; try{w=window.open(url,'_blank','noopener')}catch(err){}
+    note.textContent=w?'WhatsApp opened in a new tab. ':'Your message is ready. ';
+    var a=document.createElement('a'); a.href=url; a.target='_blank'; a.rel='noopener';
+    a.textContent='Open WhatsApp to send it'; a.style.cssText='color:var(--teal);font-weight:700';
+    note.appendChild(a);
+  });
+})();
+</script>
+</body>
+</html>
