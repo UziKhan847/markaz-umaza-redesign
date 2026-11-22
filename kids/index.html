@@ -28,7 +28,8 @@
 }
 *{box-sizing:border-box;min-width:0}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{margin:0;font:18px/1.6 var(--body);color:var(--ink);background:var(--cream);overflow-x:clip}
+html{overflow-x:hidden}
+body{overflow-x:hidden;margin:0;font:18px/1.6 var(--body);color:var(--ink);background:var(--cream);overflow-x:clip}
 img,svg{display:block}
 a{color:inherit}
 h1,h2,h3{font-family:var(--head);margin:0;line-height:1.05;color:var(--deep)}
@@ -208,7 +209,8 @@ p{margin:0}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--teal);background:#fff}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .ages{display:flex;flex-wrap:wrap;gap:8px}
-.ages input{position:absolute;opacity:0;pointer-events:none}
+.ages{position:relative}
+.ages input{position:absolute;left:0;top:0;width:1px;height:1px;margin:0;opacity:0;pointer-events:none;clip-path:inset(50%)}
 .ages label{min-height:48px;padding:0 18px;border-radius:999px;display:inline-flex;align-items:center;background:var(--cream);font:700 16px var(--head);color:var(--deep);cursor:pointer;border:3px solid transparent;transition:all .2s}
 .ages input:checked + label{background:var(--sun);border-color:var(--sun-d)}
 .ages input:focus-visible + label{outline:3px solid var(--coral)}
@@ -265,7 +267,8 @@ footer a:hover{color:var(--sun)}
   .step .num{width:76px;height:76px;font-size:38px}
   .row2{grid-template-columns:1fr}
   .reg{padding:14px;border-radius:30px}
-  .hud{width:66px}
+  .hud{width:62px}
+  .bubble{max-width:180px;font-size:14px;top:-50px}
   .bubble{font-size:14px;max-width:170px}
   .fgrid{grid-template-columns:1fr}
 }
@@ -548,11 +551,12 @@ if(typeof window!=='undefined') window.hhSVG=hhSVG;
     fig.classList.remove('hop'); void fig.offsetWidth; fig.classList.add('hop');
     setTimeout(()=>fig.classList.remove('hop'),550);
   }
-  function say(t,ms){bubble.textContent=t;bubble.classList.add('on');clearTimeout(bubbleT);bubbleT=setTimeout(()=>bubble.classList.remove('on'),ms||3200)}
+  let talking=false;
+  function say(t,ms){bubble.textContent=t;bubble.classList.add('on');talking=true;clearTimeout(bubbleT);bubbleT=setTimeout(()=>{bubble.classList.remove('on');talking=false},ms||3200)}
   setPose('wave'); setTimeout(()=>say(secs[0].dataset.say,3600),700);
   /* blink */
   setInterval(()=>{const o=fig.querySelector('[data-eo]'),c=fig.querySelector('[data-ec]');if(!o||!c)return;o.style.display='none';c.style.display='';setTimeout(()=>{o.style.display='';c.style.display='none'},140)},3600);
-  fig.addEventListener('click',()=>{const p=pose;pose='';setPose('happy');say(['MashaAllah, keep going!','You are doing great!','Have you tried the letters?'][Math.floor(Math.random()*3)],2400);setTimeout(()=>setPose(p),1600)});
+  fig.addEventListener('click',()=>{talking=true;const p=pose;pose='';setPose('happy');say(['MashaAllah, keep going!','You are doing great!','Have you tried the letters?'][Math.floor(Math.random()*3)],2400);setTimeout(()=>setPose(p),1600)});
   addEventListener('pointermove',e=>{mxp=e.clientX;myp=e.clientY},{passive:true});
   function tick(){
     const W=innerWidth,H=innerHeight,small=W<640,w=hud.offsetWidth,h=w*1.24;
@@ -560,11 +564,12 @@ if(typeof window!=='undefined') window.hhSVG=hhSVG;
     if(!small&&mxp>=0){ if(side==='right'&&mxp>W*.6) side='left'; else if(side==='left'&&mxp<W*.4) side='right'; }
     if(small) side='right';
     hud.classList.toggle('left',side==='left'); hud.classList.toggle('flip',side==='left');
-    const tx= side==='right' ? W-w-(small?12:30) : (small?12:30);
-    const ty= small ? H-h-96 : H*.62-h/2;
+    /* on phones HudHud tucks into the corner and only peeks out to talk */
+    const tx= side==='right' ? (small ? (talking? W-w-10 : W-w*.42) : W-w-30) : 30;
+    const ty= small ? H-h-18 : H*.62-h/2;
     nx+=(tx-nx)*.07; ny+=(ty-ny)*.07;
     const dy=scrollY-lastY; lastY=scrollY; vel+=(dy-vel)*.15;
-    rot+=(clamp(-vel*.35,-8,8)-rot)*.1;
+    rot+=(clamp(-vel*(small?.15:.35),-8,8)-rot)*.1; if(small&&!talking) rot+=(-14-rot)*.1;
     hud.style.transform=`translate3d(${nx.toFixed(1)}px,${ny.toFixed(1)}px,0)`;
     hudBody.style.transform=`rotate(${rot.toFixed(2)}deg)`;
     /* eyes look toward the cursor */
